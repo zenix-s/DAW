@@ -7,7 +7,7 @@ function init(){
 }
 
 
-const campoInput = (inputType = "text", inputLabel = "", radioOptions = []) => {
+const campoInput = (inputType = "text", inputLabel = "", Options = []) => {
   const groupInput = document.createElement("div");
 
   const label = document.createElement("span");
@@ -15,13 +15,13 @@ const campoInput = (inputType = "text", inputLabel = "", radioOptions = []) => {
 
   if (inputType === "radio") {
     const campoRadio = document.createElement("div");
-    radioOptions.forEach((radioOption) => {
+    Options.forEach((radioOption) => {
       const input = document.createElement("input");
       input.type = "radio";
       input.value = radioOption.value;
       input.name = inputLabel
       const label = document.createElement("label");
-      label.innerText = radioOption.label;
+      label.textContent = radioOption.label;
 
       campoRadio.appendChild(input);
       campoRadio.appendChild(label);
@@ -30,7 +30,25 @@ const campoInput = (inputType = "text", inputLabel = "", radioOptions = []) => {
     groupInput.appendChild(campoRadio);
   }
 
-  if (inputType === "select")
+  if (inputType === "select"){
+    const campoSelect = document.createElement("div");
+    const select = document.createElement("select")
+    campoSelect.appendChild(select)
+    Options.forEach((selectOption) => {
+      const input = document.createElement("option");
+      input.value = selectOption.value;
+      input.textContent = selectOption.label
+
+      select.appendChild(input);
+    });
+
+    groupInput.appendChild(campoSelect);
+  }
+
+  if(inputType === "textarea"){
+    const input = document.createElement("textarea");
+    groupInput.appendChild(input);
+  }
 
   if (inputType === "text") {
     const input = document.createElement("input");
@@ -48,6 +66,9 @@ function req1() {
 
 
   const requerimiento1 = document.createElement("div")
+  const requerimiento1titulo = document.createElement("h2")
+  requerimiento1titulo.textContent = "Requerimiento 1"
+  requerimiento1.appendChild(requerimiento1titulo)
   requerimiento1.id = "Requerimiento1"
 
   main.appendChild(requerimiento1)
@@ -82,33 +103,54 @@ function req1() {
     ])
   );
   form.appendChild(
-    campoInput("radio", "Genero", [
+    campoInput("radio", "Options", [
       {
-        value: "hombre",
-        label: "Hombre",
+        value: "Option1",
+        label: "Option",
       },
       {
-        value: "mujer",
-        label: "Mujer",
+        value: "Option2",
+        label: "Option",
       },
       {
-        value: "no",
-        label: "No",
+        value: "Option3",
+        label: "Option",
       },
       {
-        value: "other",
-        label: "Otro",
+        value: "Option4",
+        label: "Option",
       },
     ])
   );
 
-  form.appendChild(campoInput("checkbox", "Telefono"));
-  form.appendChild(campoInput("checkbox", "Telefono"));
-  form.appendChild(campoInput("checkbox", "Telefono"));
-  form.appendChild(campoInput("checkbox", "Telefono"));
-  form.appendChild(campoInput("checkbox", "Telefono"));
+  const checkboxContainer = document.createElement("div")
+  form.appendChild(checkboxContainer)
+  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
+  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
+  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
+  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
+  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
 
-  form.appendChild(campoInput("select", ))
+  form.appendChild(campoInput("select", "select", [
+    {
+      value: "Option1",
+      label: "Option1",
+    },
+    {
+      value: "Option2",
+      label: "Option2",
+    },
+    {
+      value: "Option3",
+      label: "Option3",
+    },
+    {
+      value: "Option4",
+      label: "Option4",
+    },
+  ]))
+
+  form.appendChild(campoInput("textarea", "textarea"))
 
 
 }
@@ -116,6 +158,9 @@ function req1() {
 function req2(){
   const requerimiento2 = document.createElement("div")
   requerimiento2.id = "Requerimiento2"
+  const requerimiento2titulo = document.createElement("h2")
+  requerimiento2titulo.textContent = "Requerimiento 2"
+  requerimiento2.appendChild(requerimiento2titulo)
 
   main.appendChild(requerimiento2)
 
