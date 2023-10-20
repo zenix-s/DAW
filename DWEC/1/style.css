@@ -1,0 +1,32 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+section{
+  border: 1px solid black;
+  margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+section > form{
+  background-color: rgb(226, 236, 252);
+}
+
+form{
+  width: 50%;
+  min-width: 250px;
+  max-width: 450px;
+}
+
+.grouptext{
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"] ~ label{
+  color: red;
+}

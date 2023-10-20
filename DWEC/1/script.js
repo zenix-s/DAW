@@ -1,3 +1,9 @@
+import Pizza from "./classes/pizza.js";
+import InputComponent from "./classes/inputComponent.js";
+
+
+
+
 const main = document.getElementById("main");
 
 function init(){
@@ -6,66 +12,12 @@ function init(){
   main.appendChild(titulo)
 }
 
-
-const campoInput = (inputType = "text", inputLabel = "", Options = []) => {
-  const groupInput = document.createElement("div");
-
-  const label = document.createElement("span");
-  groupInput.appendChild(label);
-
-  if (inputType === "radio") {
-    const campoRadio = document.createElement("div");
-    Options.forEach((radioOption) => {
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.value = radioOption.value;
-      input.name = inputLabel
-      const label = document.createElement("label");
-      label.textContent = radioOption.label;
-
-      campoRadio.appendChild(input);
-      campoRadio.appendChild(label);
-    });
-
-    groupInput.appendChild(campoRadio);
-  }
-
-  if (inputType === "select"){
-    const campoSelect = document.createElement("div");
-    const select = document.createElement("select")
-    campoSelect.appendChild(select)
-    Options.forEach((selectOption) => {
-      const input = document.createElement("option");
-      input.value = selectOption.value;
-      input.textContent = selectOption.label
-
-      select.appendChild(input);
-    });
-
-    groupInput.appendChild(campoSelect);
-  }
-
-  if(inputType === "textarea"){
-    const input = document.createElement("textarea");
-    groupInput.appendChild(input);
-  }
-
-  if (inputType === "text") {
-    const input = document.createElement("input");
-    input.type = inputType;
-    groupInput.appendChild(input);
-  } 
-  
-
-  label.innerText = inputLabel;
-
-  return groupInput;
-};
-
 function req1() {
 
+  const inputComponent = new InputComponent()
 
-  const requerimiento1 = document.createElement("div")
+
+  const requerimiento1 = document.createElement("section")
   const requerimiento1titulo = document.createElement("h2")
   requerimiento1titulo.textContent = "Requerimiento 1"
   requerimiento1.appendChild(requerimiento1titulo)
@@ -76,87 +28,109 @@ function req1() {
   const form = document.createElement("form")
   requerimiento1.appendChild(form)
 
-  form.appendChild(campoInput("text", "Nombre"));
-  form.appendChild(campoInput("text", "Apellidos"));
-  form.appendChild(campoInput("text", "DNI"));
-  form.appendChild(campoInput("text", "Dirección"));
-  form.appendChild(campoInput("text", "Telefono"));
 
-  form.appendChild(
-    campoInput("radio", "Genero", [
-      {
-        value: "hombre",
-        label: "Hombre",
-      },
-      {
-        value: "mujer",
-        label: "Mujer",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-      {
-        value: "other",
-        label: "Otro",
-      },
-    ])
-  );
-  form.appendChild(
-    campoInput("radio", "Options", [
-      {
-        value: "Option1",
-        label: "Option",
-      },
-      {
-        value: "Option2",
-        label: "Option",
-      },
-      {
-        value: "Option3",
-        label: "Option",
-      },
-      {
-        value: "Option4",
-        label: "Option",
-      },
-    ])
-  );
-
-  const checkboxContainer = document.createElement("div")
-  form.appendChild(checkboxContainer)
-  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
-  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
-  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
-  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
-  checkboxContainer.appendChild(campoInput("checkbox", "Telefono"));
-
-  form.appendChild(campoInput("select", "select", [
+  form.appendChild(inputComponent.inputContainer("text","Nombre","inputNombreReq1"))
+  form.appendChild(inputComponent.inputContainer("text","Apellidos","inputApellidosReq1"))
+  form.appendChild(inputComponent.inputContainer("text","Dni","inputDniReq1"))
+  form.appendChild(inputComponent.inputContainer("text","Direccion","inputDireccionReq1"))
+  form.appendChild(inputComponent.inputContainer("text","Telefono","inputTelefonoReq1"))
+  
+  form.appendChild(inputComponent.inputContainer("radio","Genero","inputRadioGeneroReq1", [
     {
-      value: "Option1",
-      label: "Option1",
+      value: "hombre",
+      label: "Hombre",
     },
     {
-      value: "Option2",
-      label: "Option2",
+      value: "mujer",
+      label: "Mujer",
     },
     {
-      value: "Option3",
-      label: "Option3",
+      value: "no",
+      label: "No",
     },
     {
-      value: "Option4",
-      label: "Option4",
+      value: "other",
+      label: "Otro",
     },
   ]))
 
-  form.appendChild(campoInput("textarea", "textarea"))
+  form.appendChild(inputComponent.inputContainer("radio","Options","inputRadioOptionsReq1", [
+    {
+      value: "Option1",
+      label: "Option",
+    },
+    {
+      value: "Option2",
+      label: "Option",
+    },
+    {
+      value: "Option3",
+      label: "Option",
+    },
+    {
+      value: "Option4",
+      label: "Option",
+    },
+  ]))
+
+  const checkboxContainer = document.createElement("div")
+
+  form.appendChild(checkboxContainer)
+
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+
+  form.appendChild(inputComponent.inputContainer("select","Options","inputSelectOptionsReq1", [
+    {
+      value: "Option1",
+      label: "Option",
+    },
+    {
+      value: "Option2",
+      label: "Option",
+    },
+    {
+      value: "Option3",
+      label: "Option",
+    },
+    {
+      value: "Option4",
+      label: "Option",
+    },
+  ]))
+
+  form.appendChild(inputComponent.inputContainer("textarea", "TextArea", "inputTextArea1Req1"))
+
 
 
 }
 
+/**
+ * Calcula el precio de la pizza
+ */
+function calcPrice(){
+  const pizza = new Pizza(1, ["peperoni", "atun"])
+
+  const precio = pizza.calcPrice();
+  
+  console.log(precio)
+  
+}
+
+/**
+ * Se encarga de generar el formulario para pedir pizza.
+ * 
+ */
 function req2(){
-  const requerimiento2 = document.createElement("div")
+
+
+  const inputComponent = new InputComponent()
+
+
+  const requerimiento2 = document.createElement("section")
   requerimiento2.id = "Requerimiento2"
   const requerimiento2titulo = document.createElement("h2")
   requerimiento2titulo.textContent = "Requerimiento 2"
@@ -164,11 +138,63 @@ function req2(){
 
   main.appendChild(requerimiento2)
 
-
-
   const form = document.createElement("form")
-  requerimiento1.appendChild(form)
+  
+  
+
+
+
+
+
+  requerimiento2.appendChild(form)
+
+  
+
+  form.appendChild(inputComponent.inputContainer("text","Nombre","inputNombreReq2"))
+  form.appendChild(inputComponent.inputContainer("text","Direccion","inputDireccionReq2"))
+  form.appendChild(inputComponent.inputContainer("text","Telefono","inputTelefonoReq2"))
+  form.appendChild(inputComponent.inputContainer("text","Email","inputEmailReq2"))
+
+  form.appendChild(
+    inputComponent.inputContainer("radio","Tamaño","inputSizeReq2", [
+      {
+        value: "1",
+        label: "Pequeña",
+      },
+      {
+        value: "2",
+        label: "Mediana",
+      },
+      {
+        value: "3",
+        label: "Grande",
+      },
+    ])
+  );
+
+  const checkboxContainer = document.createElement("div")
+
+  form.appendChild(checkboxContainer)
+  
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Pollo","inputPolloReq2"));
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Atun","inputAtunReq2"));
+  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Bacon","inputBaconReq2"));
+
+  form.appendChild(inputComponent.inputContainer("submit","Submit","inputSubmitReq2"))
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    
+
+    
+
+    calcPrice()
+  })
+
+
 }
+
+
 
 init();
 req1();
