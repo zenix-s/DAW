@@ -22,11 +22,31 @@ form{
   max-width: 450px;
 }
 
-.grouptext{
+
+
+.inputtextContainer{
+  height: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+.inputtextContainer > label{
+  position: absolute;
+  top: 25px;
+  left: 5px;
+  cursor: text;
+  user-select: none;
+  transition: 200ms ease-in-out;
 }
 
-input[type="text"] ~ label{
-  color: red;
+.inputtextContainer > input{
+  outline: none;
+  padding: 5px 7px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.inputtextContainer > input:focus~label,
+  .inputtextContainer > input:where(:not(:placeholder-shown))~label{
+  top: 2px;
 }

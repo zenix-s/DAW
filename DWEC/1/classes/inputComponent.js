@@ -11,28 +11,33 @@ export default class InputComponent{
   inputContainer(inputType, inputLabel, idName,  Options = []){
     
     const inputContainer = document.createElement("div");
-    
-    if (inputType !== "submit"){
-      const labelContainer = this.#labelContainer(inputLabel)
-      inputContainer.appendChild(labelContainer)
-    }
 
+    inputContainer.classList.add("input" + inputType + "Container")
+    
+    
     inputType === "radio" && (inputContainer.appendChild(this.#radioContainer(Options, idName)))
     inputType === "select" && (inputContainer.appendChild(this.#selectContainer(Options, idName)))
     inputType === "textarea" && (inputContainer.appendChild(this.#textAreaContainer()))
-    inputType === "text" && (inputContainer.appendChild(this.#standardInputContainer(inputType)))
-    inputType === "checkbox" && (inputContainer.appendChild(this.#standardInputContainer(inputType)))
+    inputType === "text" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName)))
+    inputType === "checkbox" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName)))
     inputType === "submit" && (inputContainer.appendChild(this.#standardInputContainer(inputType)))
+    
+    if (inputType !== "submit"){
+      const labelContainer = this.#labelContainer(inputLabel, idName)
+      
+      inputContainer.appendChild(labelContainer)
 
+    }
 
 
 
     return inputContainer
   }
 
-  #labelContainer(inputLabel){
+  #labelContainer(inputLabel, idName){
     const labelContainer = document.createElement("label")
     labelContainer.textContent = inputLabel
+    labelContainer.setAttribute("for", idName)
 
     return labelContainer
   }
@@ -70,8 +75,6 @@ export default class InputComponent{
       select.appendChild(input);
     });
 
-    
-
     return selectContainer
   }
 
@@ -82,17 +85,19 @@ export default class InputComponent{
     return textAreaContainer
   }
 
-  #standardInputContainer(inputType){
+  #standardInputContainer(inputType, idName){
     const standardInputContainer = document.createElement("div")
     const input = document.createElement("input");
     input.type = inputType;
+    input.id = idName
+    input.setAttribute("name", idName)
     
     inputType === "text" && (input.placeholder = "")
     inputType === "submit" && (input.value = "Submit" )
     
     standardInputContainer.appendChild(input);
 
-    return standardInputContainer
+    return input
 
   }
 

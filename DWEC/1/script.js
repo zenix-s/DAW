@@ -111,12 +111,13 @@ function req1() {
 /**
  * Calcula el precio de la pizza
  */
-function calcPrice(){
-  const pizza = new Pizza(1, ["peperoni", "atun"])
+function checkPizzaPrice(size, ingridients){
 
-  const precio = pizza.calcPrice();
+  const pizza = new Pizza(size, ingridients)
+
+  const precio = pizza.checkPrice();
   
-  console.log(precio)
+  return precio
   
 }
 
@@ -185,10 +186,15 @@ function req2(){
   form.addEventListener("submit", (e) => {
     e.preventDefault()
     
+    const data = new FormData(e.target)
 
+    const size = data.get("inputSizeReq2")
+
+    const ingridients =   ((data.get("inputPolloReq2") === "on") ? 1 : 0) + ((data.get("inputAtunReq2") === "on") ? 1 : 0) + ((data.get("inputBaconReq2") === "on") ? 1 : 0)
+  
     
 
-    calcPrice()
+    alert(checkPizzaPrice(size, ingridients))
   })
 
 

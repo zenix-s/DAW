@@ -12,8 +12,8 @@ export default class Pizza{
    * @returns int precio de la pizza
    * 
    */
-  calcPrice(){
-    const price = 2
+  checkPrice(){
+    const price = 0 + (this.size * 5) + this.ingridients
     
     return price
   }
