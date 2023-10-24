@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Aplicacion de clientes: Cambiar datos del Cliente</h1>
+	<!--  <form th:action="@{/clientes/editar/{id}(id=${cliente.idCliente})}" method="post">-->
+		<form th:action="@{/clientes/editar/{id}(id=${cliente.idCliente})}" th:object="${cliente}" method="post">
+		<p><input type="text" name="nombre" th:value="${cliente.nombre}"></p>
+		<p><input type="text" th:field="*{numeroEmpleados}"></p>
+		<p><input type="text" th:field="*{facturacionAnual}"></p>
+		<p><input type="date" th:field="*{fechaCreacion}"></p>
+		
+		<p><input type="submit" value="Enviar"></p>
+		
+	</form>
+</body>
+</html>

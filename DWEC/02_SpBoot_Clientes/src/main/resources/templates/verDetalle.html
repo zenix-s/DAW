@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>		
+		<h1>Detalle de  Cliente</h1>
+	</div>
+	<div>
+		<p th:text="${cliente.idCliente}"></p>
+		<p th:text="${cliente.nombre}"></p>
+		<p th:text="${cliente.facturacionAnual}"></p>
+		<p th:text="${cliente.cantidadEmpleados}"></p>
+	</div>
+	
+	<div>
+		<a th:href="@{/}">Volver home</a>						
+	</div>
+</body>
+</html>

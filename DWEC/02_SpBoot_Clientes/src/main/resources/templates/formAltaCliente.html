@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Aplicacion de clientes: Alta de Cliente</h1>
+	<form th:action="@{/clientes/alta}" method="post">
+	
+		<div>
+			<label>Nombre</label>
+			<input type="text" name="nombre">
+		</div>
+		<div>
+			<label>numeroEmpleados</label>
+			<input type="text" name="numeroEmpleados"></div>
+		<div>
+			<label>facturacionAnual</label>
+			<input type="text" name="facturacionAnual"></div>
+		<div>
+			<label>fechaCreacion</label>
+			<input type="date" name="fechaCreacion"></div>
+		
+		<div><input type="submit" value="Enviar"></div>
+		
+	</form>
+</body>
+</html>
