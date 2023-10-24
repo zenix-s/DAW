@@ -1,6 +1,7 @@
 package net.unir.clientes.modelo.javabean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Cliente implements Serializable{
 	
@@ -11,7 +12,22 @@ public class Cliente implements Serializable{
 	private String nombre;
 	private int cantidadEmpleados;
 	private double facturacionAnual;
+	private Date fechaAlta;
+	private Date fechaCreacion;
 	
+	
+	
+	public Cliente(int idCliente, String nombre, int cantidadEmpleados, double facturacionAnual, Date fechaAlta,
+			Date fechaCreacion) {
+		super();
+		this.idCliente = idCliente;
+		this.nombre = nombre;
+		this.cantidadEmpleados = cantidadEmpleados;
+		this.facturacionAnual = facturacionAnual;
+		this.fechaAlta = fechaAlta;
+		this.fechaCreacion = fechaCreacion;
+	}
+
 	public Cliente(int idCliente, String nombre, int cantidadEmpleados, double facturacionAnual) {
 		super();
 		this.idCliente = idCliente;
@@ -53,11 +69,32 @@ public class Cliente implements Serializable{
 	public void setFacturacionAnual(double facturacionAnual) {
 		this.facturacionAnual = facturacionAnual;
 	}
+	
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", cantidadEmpleados=" + cantidadEmpleados
-				+ ", facturacionAnual=" + facturacionAnual + "]";
+				+ ", facturacionAnual=" + facturacionAnual + ", fechaAlta=" + fechaAlta + ", fechaCreacion="
+				+ fechaCreacion + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

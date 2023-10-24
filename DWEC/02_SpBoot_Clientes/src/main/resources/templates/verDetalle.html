@@ -13,6 +13,7 @@
 		<p th:text="${cliente.nombre}"></p>
 		<p th:text="${cliente.facturacionAnual}"></p>
 		<p th:text="${cliente.cantidadEmpleados}"></p>
+		<p th:text="${#dates.format(cliente.fechaCreacion, 'dd-MM-yyyy')}"></p>
 	</div>
 	
 	<div>
