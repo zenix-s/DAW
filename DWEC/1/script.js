@@ -29,13 +29,12 @@ function req1() {
   requerimiento1.appendChild(form)
 
 
-  form.appendChild(inputComponent.inputContainer("text","Nombre","inputNombreReq1"))
-  form.appendChild(inputComponent.inputContainer("text","Apellidos","inputApellidosReq1"))
-  form.appendChild(inputComponent.inputContainer("text","Dni","inputDniReq1"))
-  form.appendChild(inputComponent.inputContainer("text","Direccion","inputDireccionReq1"))
-  form.appendChild(inputComponent.inputContainer("text","Telefono","inputTelefonoReq1"))
-  
-  form.appendChild(inputComponent.inputContainer("radio","Genero","inputRadioGeneroReq1", [
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Nombre",idName:"inputNombreReq1"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Dni",idName:"inputDniReq1"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Direccion",idName:"inputDireccionReq1"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Telefono",idName:"inputTelefonoReq1"}))
+
+  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Genero",idName:"inputRadioGeneroReq1", options:[
     {
       value: "hombre",
       label: "Hombre",
@@ -52,9 +51,9 @@ function req1() {
       value: "other",
       label: "Otro",
     },
-  ]))
+  ]}))
 
-  form.appendChild(inputComponent.inputContainer("radio","Options","inputRadioOptionsReq1", [
+  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Options",idName:"inputRadioOptionsReq1", options:[
     {
       value: "Option1",
       label: "Option",
@@ -71,19 +70,20 @@ function req1() {
       value: "Option4",
       label: "Option",
     },
-  ]))
+  ]}))
 
   const checkboxContainer = document.createElement("div")
 
   form.appendChild(checkboxContainer)
 
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox", "CheckBox", "inputCheckbox1Req1"))
+  
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox1Req1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox21Req1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox3Req1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox4Req1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox5Req1"}))
 
-  form.appendChild(inputComponent.inputContainer("select","Options","inputSelectOptionsReq1", [
+  form.appendChild(inputComponent.inputContainer({inputType:"select",inputLabel:"Options",idName:"inputSelectOptionsReq1", options:[
     {
       value: "Option1",
       label: "Option",
@@ -100,7 +100,7 @@ function req1() {
       value: "Option4",
       label: "Option",
     },
-  ]))
+  ]}))
 
   form.appendChild(inputComponent.inputContainer("textarea", "TextArea", "inputTextArea1Req1"))
 
@@ -108,18 +108,6 @@ function req1() {
 
 }
 
-/**
- * Calcula el precio de la pizza
- */
-function checkPizzaPrice(size, ingridients){
-
-  const pizza = new Pizza(size, ingridients)
-
-  const precio = pizza.checkPrice();
-  
-  return precio
-  
-}
 
 /**
  * Se encarga de generar el formulario para pedir pizza.
@@ -147,17 +135,16 @@ function req2(){
 
 
 
-  requerimiento2.appendChild(form)
-
   
-
-  form.appendChild(inputComponent.inputContainer("text","Nombre","inputNombreReq2"))
-  form.appendChild(inputComponent.inputContainer("text","Direccion","inputDireccionReq2"))
-  form.appendChild(inputComponent.inputContainer("text","Telefono","inputTelefonoReq2"))
-  form.appendChild(inputComponent.inputContainer("text","Email","inputEmailReq2"))
-
+  
+  
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Nombre",idName:"inputNombreReq2"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Direccion",idName:"inputDireccionReq2"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Telefono",idName:"inputTelefonoReq2"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Email",idName:"inputEmailReq2"}))
+  
   form.appendChild(
-    inputComponent.inputContainer("radio","Tamaño","inputSizeReq2", [
+    inputComponent.inputContainer({inputType:"radio",inputLabel:"Tamaño",idName:"inputSizeReq2",required:true , options:[
       {
         value: "1",
         label: "Pequeña",
@@ -170,38 +157,54 @@ function req2(){
         value: "3",
         label: "Grande",
       },
-    ])
-  );
-
-  const checkboxContainer = document.createElement("div")
-
-  form.appendChild(checkboxContainer)
-  
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Pollo","inputPolloReq2"));
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Atun","inputAtunReq2"));
-  checkboxContainer.appendChild(inputComponent.inputContainer("checkbox","Bacon","inputBaconReq2"));
-
-  form.appendChild(inputComponent.inputContainer("submit","Submit","inputSubmitReq2"))
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault()
+    ]})
+    );
     
-    const data = new FormData(e.target)
-
-    const size = data.get("inputSizeReq2")
-
-    const ingridients =   ((data.get("inputPolloReq2") === "on") ? 1 : 0) + ((data.get("inputAtunReq2") === "on") ? 1 : 0) + ((data.get("inputBaconReq2") === "on") ? 1 : 0)
-  
+    const checkboxContainer = document.createElement("div")
     
+    form.appendChild(checkboxContainer)
+    
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Pollo",idName:"inputPolloReq2"}))
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Atun",idName:"inputAtunReq2"}))
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Bacon",idName:"inputBaconReq2"}))
+    
+    
+    form.appendChild(inputComponent.inputContainer({inputType:"submit",inputLabel:"Submit",idName:"inputSubmitReq2"}))
 
-    alert(checkPizzaPrice(size, ingridients))
-  })
+    // price container
+    const priceContainer = document.createElement("div")
+    const priceLabel = document.createElement("p")
+    priceLabel.textContent = "Precio de la pizza = 0€"
+
+    
+    form.addEventListener("submit", (e) => {
+      e.preventDefault()
+      
+      const data = new FormData(e.target)
+      
+      const size = data.get("inputSizeReq2")
+      
+      const ingridients =   ((data.get("inputPolloReq2") === "on") ? 1 : 0) + ((data.get("inputAtunReq2") === "on") ? 1 : 0) + ((data.get("inputBaconReq2") === "on") ? 1 : 0)
+      
 
 
-}
+      const pizza = new Pizza(size, ingridients)
+      const precio = pizza.checkPrice();
+
+      priceLabel.textContent = "Precio de la pizza = " + precio + "€"
+  
+    })
+
+    priceContainer.appendChild(priceLabel)
+    
+    requerimiento2.appendChild(form)
+    requerimiento2.appendChild(priceContainer)
 
 
-
-init();
-req1();
-req2();
+  }
+  
+  
+  
+  init();
+  req1();
+  req2();

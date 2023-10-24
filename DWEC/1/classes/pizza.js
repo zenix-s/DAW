@@ -9,7 +9,7 @@ export default class Pizza{
 
   /**
    * 
-   * @returns int precio de la pizza
+   * @returns {int} precio de la pizza
    * 
    */
   checkPrice(){
