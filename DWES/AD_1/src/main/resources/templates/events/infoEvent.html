@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<style>
+	ul{
+		list-style: none;
+	}
+	li{
+		display: flex;
+		gap: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>
+		Información Evento
+		<span th:text="${evento.nombre}"></span>
+	</h1>
+	
+	<div>
+		<ul>
+			<li>
+				<p>Nombre</p>
+				<p th:text="${evento.nombre}"></p>
+			</li>
+			<li>
+				<p>Descripción</p>
+				<p th:text="${evento.descripcion}"></p>
+			</li>
+			<li>
+				<p>Fecha Inicio</p>
+				<p th:text="${evento.fechaInicio}"></p>
+			</li>
+			<li>
+				<p>Duración</p>
+				<p th:text="${evento.duracion + ' Minutos'}"></p>
+			</li>
+			<li>
+				<p>Dirección</p>
+				<p th:text="${evento.direccion}"></p>
+			</li>
+			<li>
+				<p>Estado</p>
+				<p th:text="${evento.estado}"></p>
+			</li>
+			<li>
+				<p>Destacado</p>
+				<p th:text="${evento.destacado}"></p>
+			</li>
+			<li>
+				<p>Aforo Maximo</p>
+				<p th:text="${evento.aforoMaximo}"></p>
+			</li>
+			<li>
+				<p>Minimo Asistencia</p>
+				<p th:text="${evento.asistenciaMinima}"></p>
+			</li>
+			<li>
+				<p>Precio</p>
+				<p th:text="${evento.precio}"></p>
+			</li>
+			<!--<li>
+				<p></p>
+				<p th:text="${evento.}"></p>
+			</li>-->
+			
+		</ul>
+	</div>
+		
+</body>
+</html>
