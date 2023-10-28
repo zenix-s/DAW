@@ -3,10 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<h1>
-		Hola mundo
-	</h1>
+	<!--<a th:href="@{/events/cancelar/{id}(id=${evento.idEvento})}">Cancelar</a>-->
+	<div id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a class="activeNavTab" th:href="@{/}">
+						Eventos
+					</a>
+				</li>
+				<li>
+					<a>
+						Tipos
+					</a>
+				</li>
+				<li>
+					<a>
+						Usuarios
+					</a>
+				</li>
+				<li>
+					<a>
+						Login
+					</a>
+				</li>
+				<li>
+					<a>
+						Registro
+					</a>
+				</li>
+				<li>
+					<a>
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div>
+		<h2>Ultima accion realizada: <span th:text="${message}"></span></h2>
+		<h2>
+			Listado de eventos activos
+		</h2>
+		<div>
+			<a th:href="@{/events/alta}">
+				Nuevo evento
+			</a>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Activo</th>
+					<th colspan="4">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.idEvento}"></td>
+					<td th:text="${evento.nombre}"></td>
+					<td th:text="${evento.precio}"></td>
+					<td th:text="${evento.estado}"></td>
+					<td><a class="detailsButton" th:href="@{/events/detalles/{id}(id=${evento.idEvento})}">Ver Detalles</a></td>
+					<td><a class="editButton" th:href="@{/events/editar/{id}(id=${evento.idEvento})}">Editar</a></td>
+					<td><a class="deleteButton" th:href="@{/events/eliminar/{id}(id=${evento.idEvento})}">Eliminar</a></td>
+					<td><a class="cancelButton" th:href="@{/events/cancelar/{id}(id=${evento.idEvento})}">Cancelar</a></td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>
+			Listado de eventos cancelados
+		</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Activo</th>
+					<th colspan="4">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventosC}">
+					<td th:text="${evento.idEvento}"></td>
+					<td th:text="${evento.nombre}"></td>
+					<td th:text="${evento.precio}"></td>
+					<td th:text="${evento.estado}"></td>
+					<td><a class="detailsButton" th:href="@{/events/detalles/{id}(id=${evento.idEvento})}">Ver Detalles</a></td>
+					<td><a class="editButton" th:href="@{/events/editar/{id}(id=${evento.idEvento})}">Editar</a></td>
+					<td><a class="deleteButton" th:href="@{/events/eliminar/{id}(id=${evento.idEvento})}">Eliminar</a></td>
+					<td><a class="cancelButton" th:href="@{/events/cancelar/{id}(id=${evento.idEvento})}">Cancelar</a></td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

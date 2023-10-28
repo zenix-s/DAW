@@ -10,7 +10,6 @@ export default class Pizza{
   /**
    * 
    * @returns {int} precio de la pizza
-   * 
    */
   checkPrice(){
     const price = 0 + (this.size * 5) + this.ingridients

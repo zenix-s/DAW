@@ -3,19 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
+<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
 <style>
-	ul{
-		list-style: none;
-	}
-	li{
-		display: flex;
-		gap: 10px;
+	p:first-child{
+		font-weight: 700;
 	}
 </style>
 </head>
 <body>
+	<div id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a th:href="@{/}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
 	<h1>
 		Información Evento
 		<span th:text="${evento.nombre}"></span>
@@ -63,10 +70,11 @@
 				<p>Precio</p>
 				<p th:text="${evento.precio}"></p>
 			</li>
-			<!--<li>
-				<p></p>
-				<p th:text="${evento.}"></p>
-			</li>-->
+			<li>
+				<p>Tipo</p>
+				<p th:text="${evento.tipo.nombre}"></p>
+				<p th:text="${evento.tipo.descripcion}"></p>
+			</li>
 			
 		</ul>
 	</div>

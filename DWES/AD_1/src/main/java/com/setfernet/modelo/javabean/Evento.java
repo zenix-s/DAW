@@ -37,6 +37,46 @@ public class Evento {
 		this.precio = precio;
 		this.tipo = tipo;
 	}
+	
+
+	public Evento(String nombre, String descripcion, Date fechaInicio, int duracion, String direccion, String estado,
+			boolean destacado, int aforoMaximo, int asistenciaMinima, double precio, Tipo tipo) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaInicio = fechaInicio;
+		this.duracion = duracion;
+		this.direccion = direccion;
+		this.estado = estado;
+		this.destacado = destacado;
+		this.aforoMaximo = aforoMaximo;
+		this.asistenciaMinima = asistenciaMinima;
+		this.precio = precio;
+		this.tipo = tipo;
+	}
+
+	
+
+	public Evento(String nombre, String descripcion, Date fechaInicio, int duracion, String direccion, String estado,
+			boolean destacado, int aforoMaximo, int asistenciaMinima, double precio) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaInicio = fechaInicio;
+		this.duracion = duracion;
+		this.direccion = direccion;
+		this.estado = estado;
+		this.destacado = destacado;
+		this.aforoMaximo = aforoMaximo;
+		this.asistenciaMinima = asistenciaMinima;
+		this.precio = precio;
+	}
+
+
+	public Evento() {
+		super();
+	}
+
 
 	public int getIdEvento() {
 		return idEvento;

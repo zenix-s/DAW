@@ -13,10 +13,15 @@ import com.setfernet.modelo.javabean.Evento;
 public class ImplementEventoDao implements EventoDao {
 	
 	private List<Evento> eventoList;
+	private static int idAuto;
 	
 	@Autowired
 	private TipoDao tipoDao;
 	
+	
+	static {
+		idAuto=0;
+	}
 	
 
 	public ImplementEventoDao(TipoDao tipoDao) {
@@ -36,6 +41,7 @@ public class ImplementEventoDao implements EventoDao {
         eventoList.add(new Evento(8, "Presentación de Música Clásica", "Presentación de música clásica en vivo", new Date(), 75, "606 Calle Octava", "Activo", true, 150, 30, 15.0, tipoDao.findById(4)));
         eventoList.add(new Evento(9, "Conferencia de Historia", "Conferencia sobre eventos históricos importantes", new Date(), 120, "707 Calle Novena", "Activo", true, 300, 70, 35.0, tipoDao.findById(1)));
         eventoList.add(new Evento(10, "Taller de Cocina", "Taller práctico para aprender nuevas recetas de cocina", new Date(), 90, "909 Calle Décima", "Activo", true, 200, 50, 25.0, tipoDao.findById(2)));
+        idAuto = 10;
 	}
 	
 
@@ -52,11 +58,59 @@ public class ImplementEventoDao implements EventoDao {
 	public List<Evento> findAll() {
 		return eventoList;
 	}
+	@Override
+	public List<Evento> findAllActive() {
+		return eventoList
+				.stream()
+				.filter(event -> event.getEstado().equals("Activo"))
+				.toList();
+	}
+	@Override
+	public List<Evento> findAllNoActive() {
+		return eventoList
+				.stream()
+				.filter(event -> event.getEstado().equals("Cancelado"))
+				.toList();
+	}
 	
 	@Override
-	public int deleteEvento(int idEvento) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean deleteEvent(int idEvento) {
+		Evento evento = findById(idEvento);
+		if (evento == null) return false;
+		return eventoList.remove(evento) ? true : false;
+	}
+	
+	@Override
+	public boolean newEvent(Evento evento) {
+		if(!eventoList.contains(evento)) {
+			evento.setIdEvento(++idAuto);
+			eventoList.add(evento);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	@Override
+	public boolean updateEvent(Evento evento) {
+		int pos = eventoList.indexOf(evento);
+		if(pos == -1) return false;
+		eventoList.set(pos, evento);
+		return true;
+	}
+	@Override
+	public boolean cancelEvent(int idEvento) {
+		Evento evento = findById(idEvento);
+		if (evento == null) return false;
+		
+		int pos = eventoList.indexOf(evento);
+		if(pos == -1) return false;
+		
+		evento.setEstado("Cancelado");
+		
+		if(updateEvent(evento)) return true;
+		return false;
+		
 	}
 		
 }

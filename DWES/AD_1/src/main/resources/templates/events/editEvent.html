@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a th:href="@{/}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div>
+		<form th:action="@{/events/editar/{id}(id=${evento.idEvento})}" method="post" id="editEventForm">
+			<div>
+				<label for="nombre">Nombre:</label>
+				<input type="text" id="nombre" name="nombre" required th:value="${evento.nombre}">
+			</div>
+
+			<div>
+				<label for="descripcion">Descripción:</label>
+				<textarea id="descripcion" name="descripcion" required th:field="*{evento.descripcion}"></textarea>
+			</div>
+
+			<div>
+				<label for="fechaInicio">Fecha de Inicio:</label>
+				<input type="date" id="fechaInicio" name="fechaInicio" required th:field="*{evento.fechaInicio}">
+			</div>
+
+			<div>
+				<label for="duracion">Duración (en minutos):</label>
+				<input type="number" id="duracion" name="duracion" required th:field="*{evento.duracion}">
+			</div>
+
+			<div>
+				<label for="direccion">Dirección:</label>
+				<input type="text" id="direccion" name="direccion" required th:field="*{evento.direccion}">
+			</div>
+
+			<div>
+				<label for="estado">Estado:</label>
+				<!--<input type="text" id="estado" name="estado" required th:field="*{evento.estado}">-->
+				<select name="estadso" id="estado" required th:field="*{evento.estado}">
+					<option value="Activo">Activo</option>
+					<option value="Cancelado">Cancelado</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="destacado">Destacado:</label>
+				<input type="checkbox" id="destacado" name="destacado" th:field="*{evento.destacado}">
+				<input type="hidden" id="destacado" name="destacado" value="false">
+			</div>
+
+			<div>
+				<label for="aforoMaximo">Aforo Máximo:</label>
+				<input type="number" id="aforoMaximo" name="aforoMaximo" required th:field="*{evento.aforoMaximo}">
+			</div>
+
+			<div>
+				<label for="asistenciaMinima">Asistencia Mínima:</label>
+				<input type="number" id="asistenciaMinima" name="asistenciaMinima" required th:field="*{evento.asistenciaMinima}">
+			</div>
+
+			<div>
+				<label for="precio">Precio:</label>
+				<input type="number" id="precio" name="precio" step="0.01" required th:field="*{evento.precio}">
+			</div>
+
+			<div>
+				<label for="tipo">Tipo:</label>
+				<select name="idTipo" id="idTipo" th:field="*{evento.tipo.idTipo}">
+					<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
+				</select>
+			</div>
+
+			<br>
+			<button type="submit">Guardar Evento</button>
+		</form>
+	</div>
+	
+</body>
+
+</html>

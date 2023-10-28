@@ -18,93 +18,113 @@ function req1() {
 
 
   const requerimiento1 = document.createElement("section")
+  
   const requerimiento1titulo = document.createElement("h2")
   requerimiento1titulo.textContent = "Requerimiento 1"
-  requerimiento1.appendChild(requerimiento1titulo)
   requerimiento1.id = "Requerimiento1"
-
+  
+  main.appendChild(requerimiento1titulo)
   main.appendChild(requerimiento1)
 
   const form = document.createElement("form")
+  form.id="req1form"
+  const img1 = document.createElement("img")
+  img1.src = "assets/img/Req1Img1.png"
+  form.appendChild(img1)
   requerimiento1.appendChild(form)
 
-
+  const dat1 = document.createElement("h3")
+  dat1.textContent = "Datos del instructor"
+  form.appendChild(dat1)
   form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Nombre",idName:"inputNombreReq1"}))
+  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Apellidos",idName:"inputApellidosReq1"}))
   form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Dni",idName:"inputDniReq1"}))
   form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Direccion",idName:"inputDireccionReq1"}))
   form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Telefono",idName:"inputTelefonoReq1"}))
 
-  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Genero",idName:"inputRadioGeneroReq1", options:[
+  const dat2 = document.createElement("h3")
+  dat2.textContent = "Datos del evento"
+  form.appendChild(dat2)
+
+  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Nivel",idName:"inputRadioNiveladReq1", options:[
     {
-      value: "hombre",
-      label: "Hombre",
+      value: "principiante",
+      label: "Principiante",
     },
     {
-      value: "mujer",
-      label: "Mujer",
+      value: "intermedio",
+      label: "Intermedio",
     },
     {
-      value: "no",
-      label: "No",
+      value: "avanzado",
+      label: "avanzado",
     },
     {
-      value: "other",
-      label: "Otro",
+      value: "experto",
+      label: "experto",
     },
   ]}))
 
-  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Options",idName:"inputRadioOptionsReq1", options:[
+  form.appendChild(inputComponent.inputContainer({inputType:"radio",inputLabel:"Tipo",idName:"inputRadioTipoReq1", options:[
     {
-      value: "Option1",
-      label: "Option",
+      value: "conferencia",
+      label: "conferencia",
     },
     {
-      value: "Option2",
-      label: "Option",
+      value: "taller",
+      label: "Taller",
     },
     {
-      value: "Option3",
-      label: "Option",
+      value: "seminario",
+      label: "Seminario",
     },
     {
-      value: "Option4",
-      label: "Option",
+      value: "presentacion",
+      label: "Presentación",
     },
   ]}))
 
   const checkboxContainer = document.createElement("div")
+  checkboxContainer.classList.add("checkboxcontainer")
+  const checkboxtitle = document.createElement("p")
+
+  checkboxtitle.textContent="Contenidos"
+  checkboxContainer.appendChild(checkboxtitle)
 
   form.appendChild(checkboxContainer)
 
   
-  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox1Req1"}))
-  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox21Req1"}))
-  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox3Req1"}))
-  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox4Req1"}))
-  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"CheckBox",idName:"inputCheckbox5Req1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Programación",idName:"inputCheckboxProgramacionReq1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Diseño",idName:"inputCheckboxDisenoReq1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Redes",idName:"inputCheckboxRedesReq1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Bases de datos",idName:"inputCheckboxBBDDReq1"}))
+  checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Seguridad",idName:"inputCheckboxSeguridadReq1"}))
 
-  form.appendChild(inputComponent.inputContainer({inputType:"select",inputLabel:"Options",idName:"inputSelectOptionsReq1", options:[
+  form.appendChild(inputComponent.inputContainer({inputType:"select",inputLabel:"Modalidad",idName:"inputSelectModalidadReq1", options:[
     {
-      value: "Option1",
-      label: "Option",
+      value: "presencial",
+      label: "Presencial",
     },
     {
-      value: "Option2",
-      label: "Option",
+      value: "online",
+      label: "Online",
     },
     {
-      value: "Option3",
-      label: "Option",
+      value: "mixta",
+      label: "Mixta",
     },
     {
-      value: "Option4",
-      label: "Option",
+      value: "fax",
+      label: "Fax",
     },
   ]}))
 
-  form.appendChild(inputComponent.inputContainer("textarea", "TextArea", "inputTextArea1Req1"))
+  // form.appendChild(inputComponent.inputContainer("textarea", "TextArea", "inputTextArea1Req1"))
+  form.appendChild(inputComponent.inputContainer({inputType:"textarea", inputLabel:"Descripción del evento", idName:"inputTextareaDescripcionReq1"}))
 
-
+  const img2 = document.createElement("img")
+  img2.src="assets/img/Req1Img2.png"
+  form.appendChild(img2)
 
 }
 
@@ -123,7 +143,7 @@ function req2(){
   requerimiento2.id = "Requerimiento2"
   const requerimiento2titulo = document.createElement("h2")
   requerimiento2titulo.textContent = "Requerimiento 2"
-  requerimiento2.appendChild(requerimiento2titulo)
+  main.appendChild(requerimiento2titulo)
 
   main.appendChild(requerimiento2)
 

@@ -1,14 +1,17 @@
 export default class InputComponent{
   constructor(){}
-  /**
-   * 
-   * @param {string} inputType
-   * @param {string} inputLabel 
-   * @param {string} idName
-   * @param {} Options
-   * @param {boolean} required
-   * Indica si el input ha de ser obligatorio
-   * @returns 
+ /**
+   * Creates an input container element.
+   *
+   * @param {{
+   *   inputType: string,
+   *   inputLabel: string,
+   *   idName: string,
+   *   options?: [],
+   *   required?: boolean,
+   * }} options
+   *
+   * @returns {HTMLElement}
    */
   inputContainer(opciones){
     const {inputType, inputLabel, idName,  options = [], required = false} = opciones
@@ -56,8 +59,15 @@ export default class InputComponent{
       const label = document.createElement("label");
       label.textContent = radioOption.label;
 
-      radioContainer.appendChild(input);
-      radioContainer.appendChild(label);
+      const divCon = document.createElement("div")
+
+      
+
+      divCon.appendChild(input);
+      divCon.appendChild(label);
+
+      radioContainer.appendChild(divCon)
+
     });
 
     
