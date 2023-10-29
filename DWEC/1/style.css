@@ -5,6 +5,7 @@
 }
 body{
   background-color: #2b2b3b;
+  color: white;
 }
 
 img{
@@ -43,6 +44,62 @@ form{
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+
+
+#req2form{
+  background-color: #bd2638;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+}
+#subsection{
+  display: flex ;
+}
+
+
+#pizzasec2{
+  z-index: 2;
+  padding: 15px;
+}
+#pizzasec1{
+  z-index: 2;
+  color: white;
+  text-shadow: 1px 1px 4px black ;
+}
+#pizzasec3{
+  width: 100%;
+}
+
+input[type="submit"]{
+  background-color: white;
+  padding: 0.5em;
+  border: 1px solid #6e0410;
+  border-radius: 5px;
+  font-size: 0.7em;
+  transition: 250ms;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover{
+  background-color: #e2001a;
+  color: white;
+  border: 1px solid white;
+
+}
+
+
+#req2form > img{
+  width: 50%;
+  height: auto;
+  position: absolute;
+  transform: scaleX(-1);
+  z-index: 1;
+  filter: brightness(70%) grayscale(30%);
 }
 
 /* checkbox */
@@ -136,4 +193,5 @@ form{
   .inputtextContainer > input:where(:not(:placeholder-shown))~label{
   top: 0.4em;
   color: white;
+  text-shadow: 1px 1px 4px black ;
 }

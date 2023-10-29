@@ -1,8 +1,9 @@
 export default class InputComponent{
   constructor(){}
  /**
-   * Creates an input container element.
-   *
+   * Crea un elemento HTML el cual incluye un input y un label
+   * {inputType, inputLabel, idName,  options = [], required = false} = opciones
+   * 
    * @param {{
    *   inputType: string,
    *   inputLabel: string,
@@ -24,8 +25,8 @@ export default class InputComponent{
     inputType === "select" && (inputContainer.appendChild(this.#selectContainer(options, idName, required)))
     inputType === "textarea" && (inputContainer.appendChild(this.#textAreaContainer(required)))
     inputType === "text" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName, required)))
-    inputType === "checkbox" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName, required)))
-    inputType === "submit" && (inputContainer.appendChild(this.#standardInputContainer(inputType, required)))
+    inputType === "checkbox" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName, required, inputLabel)))
+    inputType === "submit" && (inputContainer.appendChild(this.#standardInputContainer(inputType, required, required, inputLabel)))
     
     if (inputType !== "submit"){
       const labelContainer = this.#labelContainer(inputLabel, idName)
@@ -101,16 +102,17 @@ export default class InputComponent{
     return textAreaContainer
   }
 
-  #standardInputContainer(inputType, idName, required){
+  #standardInputContainer(inputType, idName, required, inputLabel){
     const standardInputContainer = document.createElement("div")
     const input = document.createElement("input");
     input.type = inputType;
     input.id = idName
+
     required && input.setAttribute("required", required)
     input.setAttribute("name", idName)
-    
+    inputType === "checkbox" && (input.value = inputLabel)
     inputType === "text" && (input.placeholder = "")
-    inputType === "submit" && (input.value = "Submit" )
+    inputType === "submit" && (input.value = inputLabel )
     
     standardInputContainer.appendChild(input);
 

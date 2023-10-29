@@ -135,35 +135,58 @@ function req1() {
  */
 function req2(){
 
-
   const inputComponent = new InputComponent()
-
-
   const requerimiento2 = document.createElement("section")
   requerimiento2.id = "Requerimiento2"
   const requerimiento2titulo = document.createElement("h2")
   requerimiento2titulo.textContent = "Requerimiento 2"
   main.appendChild(requerimiento2titulo)
-
   main.appendChild(requerimiento2)
 
+
+  
   const form = document.createElement("form")
+  form.id="req2form"
+
+  const section1 = document.createElement("div")
+  section1.id="pizzasec1"
+  const section2 = document.createElement("div")
+  section2.id="pizzasec2"
+  const section3 = document.createElement("div")
+  section3.id="pizzasec3"
+
+  const subsection = document.createElement("div")
+  subsection.id = "subsection"
+
+
+  form.appendChild(section1)
+  form.appendChild(subsection)
+  subsection.appendChild(section2)
+  subsection.appendChild(section3)
+
+
+  const img1 = document.createElement("img")
+  img1.src="assets/img/Req2Img1.png"
+  form.appendChild(img1)
+
   
-  
+
+  const title = document.createElement("h2")
+  title.textContent="FaxPizza"
+  section1.appendChild(title)
 
 
 
 
-
   
   
   
-  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Nombre",idName:"inputNombreReq2"}))
-  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Direccion",idName:"inputDireccionReq2"}))
-  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Telefono",idName:"inputTelefonoReq2"}))
-  form.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Email",idName:"inputEmailReq2"}))
+  section2.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Nombre",idName:"inputNombreReq2"}))
+  section2.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Direccion",idName:"inputDireccionReq2"}))
+  section2.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Telefono",idName:"inputTelefonoReq2"}))
+  section2.appendChild(inputComponent.inputContainer({inputType:"text",inputLabel:"Email",idName:"inputEmailReq2"}))
   
-  form.appendChild(
+  section2.appendChild(
     inputComponent.inputContainer({inputType:"radio",inputLabel:"Tamaño",idName:"inputSizeReq2",required:true , options:[
       {
         value: "1",
@@ -181,49 +204,61 @@ function req2(){
     );
     
     const checkboxContainer = document.createElement("div")
+    checkboxContainer.classList.add("checkboxcontainer")
+    section2.appendChild(checkboxContainer)
     
-    form.appendChild(checkboxContainer)
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Pollo",idName:"ingredientes"}))
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Atun",idName:"ingredientes"}))
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Bacon",idName:"ingredientes"}))
+    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Bacon",idName:"ingredientes"}))
     
-    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Pollo",idName:"inputPolloReq2"}))
-    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Atun",idName:"inputAtunReq2"}))
-    checkboxContainer.appendChild(inputComponent.inputContainer({inputType:"checkbox",inputLabel:"Bacon",idName:"inputBaconReq2"}))
     
-    
-    form.appendChild(inputComponent.inputContainer({inputType:"submit",inputLabel:"Submit",idName:"inputSubmitReq2"}))
+    section2.appendChild(inputComponent.inputContainer({inputType:"submit",inputLabel:"Hacer Pedido",idName:"inputSubmitReq2"}))
 
     // price container
-    const priceContainer = document.createElement("div")
     const priceLabel = document.createElement("p")
-    priceLabel.textContent = "Precio de la pizza = 0€"
+    priceLabel.textContent = "Detalles del pedido"
 
     
     form.addEventListener("submit", (e) => {
       e.preventDefault()
       
+      const priceSection = document.getElementById("pizzasec3")
       const data = new FormData(e.target)
-      
+      const ingredientes = document.querySelectorAll("input[type='checkbox'][name='ingredientes']")
+      const ingredientesMarcados = []
+
+      const pListaIngredientes = document.createElement("p")
+      const pSize = document.createElement("p")
+      const pPrecio = document.createElement("p")
+
+      priceSection.appendChild(pListaIngredientes)
+      priceSection.appendChild(pSize)
+      priceSection.appendChild(pPrecio)
+
+      pListaIngredientes.textContent = "Ingredientes: "
+
+      ingredientes.forEach((ingrediente) => {
+        if(ingrediente.checked){
+          ingredientesMarcados.push(ingrediente.value)
+          pListaIngredientes.textContent = pListaIngredientes.textContent + ingrediente.value + ", "
+        }
+      })
+
       const size = data.get("inputSizeReq2")
-      
-      const ingridients =   ((data.get("inputPolloReq2") === "on") ? 1 : 0) + ((data.get("inputAtunReq2") === "on") ? 1 : 0) + ((data.get("inputBaconReq2") === "on") ? 1 : 0)
-      
-
-
-      const pizza = new Pizza(size, ingridients)
+      pSize.textContent = "Tamaño: " + (size === 1 ? "pequeña" : (size === 2 ? "Mediana" : "Grande")) 
+      const pizza = new Pizza(size, ingredientesMarcados.length)
       const precio = pizza.checkPrice();
+      pPrecio.textContent = "Precio Final " + precio + "€"
 
-      priceLabel.textContent = "Precio de la pizza = " + precio + "€"
-  
+      
+
+      
+      
     })
-
-    priceContainer.appendChild(priceLabel)
-    
+    section3.appendChild(priceLabel)
     requerimiento2.appendChild(form)
-    requerimiento2.appendChild(priceContainer)
-
-
   }
-  
-  
   
   init();
   req1();
