@@ -1,5 +1,17 @@
 # AE-1. DOM y Formularios 
 
+## Ejecutar el codigo
+
+### Metodo 1
+Para ejecutar el codigo solo hay que descargar todos los ficheros mediante un live server Ejemplo: `https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer` ejecutar index.html
+
+Ejecutar directamente el fichero index.html no funciona debido a la separación de las clases y metodos es varios ficheros .js provoca el error CORS request not HTTP
+
+### Metodo 2
+En la carpeta SoloHTML se ha simplificado juntando todo el js en el fichero html por lo que este puede ser ejecutado directamente abriendo el fichero index.html de la carpeta SoloHTML
+
+
+
 ## Requerimiento 1
 
 Requerimiento 1, se genera el formulario de forma dinámica utilizando métodos de modificación del DOM.
