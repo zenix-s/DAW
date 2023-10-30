@@ -19,3 +19,4 @@ Con el objetivo de estructurar el código de manera más organizada y modular, s
 Usando esta estructura modular y orientada a objetos, se han añadido al formulario del Requerimiento 1 los elementos HTML requeridos, cumpliendo con los criterios establecidos en el enunciado. La clase `InputComponent` permite crear y gestionar fácilmente distintos tipos de campos de entrada y mejorar la legibilidad y mantenibilidad del código.
 
 El formulario generado 
+![Alt text](readme/image.png)
