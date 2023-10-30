@@ -2,11 +2,11 @@
 
 ## Requerimiento 1
 
-Para el Requerimiento 1, se ha generado un formulario dinámico utilizando métodos de modificación del DOM en JavaScript.
+Requerimiento 1, se genera el formulario de forma dinámica utilizando métodos de modificación del DOM.
 
 Con el objetivo de estructurar el código de manera más organizada y modular, se ha creado la clase `InputComponent`. Esta clase contiene el método `inputContainer`, el cual acepta un objeto con los siguientes parámetros:
 
-- **`inputType` (string)**: Define el tipo de campo de entrada que se creará en el formulario. Puede ser `"text"`, `"radio"`, `"checkbox"`, `"select"`, `"textarea"` o `"submit"`. Este parámetro determina el tipo de elemento de entrada HTML que se generará.
+- **`inputType` (string)**: Indica el tipo de input que se creará en el formulario. Puede ser `"text"`, `"radio"`, `"checkbox"`, `"select"`, `"textarea"` o `"submit"`.
 
 - **`inputLabel` (string)**: Representa la etiqueta o texto asociado al campo de entrada. Es la descripción del campo que se mostrará al lado del elemento de entrada generado. Por ejemplo, para un campo de tipo `"text"`, `inputLabel` podría ser `"Nombre"`, `"Apellidos"`, etc.
 
