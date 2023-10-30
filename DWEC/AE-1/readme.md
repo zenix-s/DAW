@@ -8,15 +8,13 @@ Con el objetivo de estructurar el código de manera más organizada y modular, s
 
 - **`inputType` (string)**: Indica el tipo de input que se creará en el formulario. Puede ser `"text"`, `"radio"`, `"checkbox"`, `"select"`, `"textarea"` o `"submit"`.
 
-- **`inputLabel` (string)**: Representa la etiqueta o texto asociado al campo de entrada. Es la descripción del campo que se mostrará al lado del elemento de entrada generado. Por ejemplo, para un campo de tipo `"text"`, `inputLabel` podría ser `"Nombre"`, `"Apellidos"`, etc.
+- **`inputLabel` (string)**: Indica el texto que acompaña al input
 
-- **`idName` (string)**: Es el valor del atributo `id` del campo de entrada. Este identificador es útil para asociar la etiqueta del campo de entrada con el propio campo, mejorando así la accesibilidad y la usabilidad del formulario.
+- **`idName` (string)**: Es el valor del atributo `id` del campo de entrada. 
 
-- **`options` (Array)**: Este parámetro es opcional y se utiliza en campos de tipo `"radio"` y `"select"`. Es un array de objetos que contiene las opciones para los elementos de radio o las opciones del menú desplegable. Cada objeto debe tener `value` y `label`, donde `value` es el valor que se enviará al servidor cuando se seleccione esa opción, y `label` es la etiqueta visible para el usuario.
+- **`options` (Array)**: Parámetro es opcional y se utiliza en campos de tipo `"radio"` y `"select"`. Es un array de objetos que contiene las opciones para los elementos de radio o las opciones de un select. Cada objeto debe tener `value` y `label`
 
-- **`required` (boolean)**: Es un parámetro opcional que indica si el campo de entrada es obligatorio o no. Si se establece en `true`, el campo de entrada requerirá una entrada antes de que el formulario pueda ser enviado. Si no se proporciona, se asume como `false` por defecto.
-
-Usando esta estructura modular y orientada a objetos, se han añadido al formulario del Requerimiento 1 los elementos HTML requeridos, cumpliendo con los criterios establecidos en el enunciado. La clase `InputComponent` permite crear y gestionar fácilmente distintos tipos de campos de entrada y mejorar la legibilidad y mantenibilidad del código.
+- **`required` (boolean)**: Parámetro opcional que indica si el campo de entrada es obligatorio o no.
 
 Para ver el código fuente del Requerimiento 1 este se ejecuta en la función req1, haz clic [aquí](./script.js).
 
@@ -37,20 +35,15 @@ La clase `Pizza` se utiliza para calcular el precio total del pedido en función
 
 La función `checkPrice()` calcula el precio de la pizza en base a los siguientes criterios:
 
-- 5€ para la pizza pequeña.
-- 10€ para la pizza mediana.
-- 15€ para la pizza grande.
-- Cada ingrediente seleccionado tiene un costo adicional de 1€.
+- 5€ pequeña.
+- 10€ mediana.
+- 15€ grande.
+- Cada ingrediente seleccionado 1€.
 
-Al sumar estos valores, se obtiene el precio total del pedido, que se devuelve como un número entero.
+Con un `form.addEventListener("submit", (e) => {}` se comprueba cuando se ha submiteado el formulario se recolectan los datos del formulario.
+Con estos datos se construye un objeto de la clase `pizza` y se comprueba el precio con el función `checkPrice()` que devolvera el precio del pedido.
 
-Cuando se envía el formulario, se activa un evento `submit` que realiza las siguientes acciones:
 
-1. **Previene el comportamiento predeterminado del formulario**, deteniendo el envío estándar al servidor.
-2. **Recopila los datos del formulario**, incluyendo el tamaño de la pizza y los ingredientes seleccionados.
-3. **Verifica si se han seleccionado ingredientes**; si no, muestra una alerta indicando que al menos un ingrediente debe ser seleccionado.
-4. **Calcula el precio total del pedido** basado en el tamaño de la pizza y la cantidad de ingredientes elegidos.
-5. **Muestra los detalles del pedido** en la sección correspondiente del formulario, incluyendo los ingredientes seleccionados, el tamaño de la pizza y el precio final en euros.
 
 Para ver el código fuente del Requerimiento 2 este se ejecuta en la función req2, haz clic [aquí](./script.js).
 
