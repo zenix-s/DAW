@@ -17,3 +17,5 @@ Con el objetivo de estructurar el código de manera más organizada y modular, s
 - **`required` (boolean)**: Es un parámetro opcional que indica si el campo de entrada es obligatorio o no. Si se establece en `true`, el campo de entrada requerirá una entrada antes de que el formulario pueda ser enviado. Si no se proporciona, se asume como `false` por defecto.
 
 Usando esta estructura modular y orientada a objetos, se han añadido al formulario del Requerimiento 1 los elementos HTML requeridos, cumpliendo con los criterios establecidos en el enunciado. La clase `InputComponent` permite crear y gestionar fácilmente distintos tipos de campos de entrada y mejorar la legibilidad y mantenibilidad del código.
+
+El formulario generado 

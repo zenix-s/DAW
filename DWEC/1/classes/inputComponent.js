@@ -5,7 +5,7 @@ export default class InputComponent{
    * {inputType, inputLabel, idName,  options = [], required = false} = opciones
    * 
    * @param {{
-   *   inputType: string,
+   *   inputType: string, 
    *   inputLabel: string,
    *   idName: string,
    *   options?: [],
