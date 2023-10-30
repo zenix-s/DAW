@@ -52,6 +52,8 @@ Cuando se envía el formulario, se activa un evento `submit` que realiza las sig
 4. **Calcula el precio total del pedido** basado en el tamaño de la pizza y la cantidad de ingredientes elegidos.
 5. **Muestra los detalles del pedido** en la sección correspondiente del formulario, incluyendo los ingredientes seleccionados, el tamaño de la pizza y el precio final en euros.
 
+Para ver el código fuente del Requerimiento 2 este se ejecuta en la función req2, haz clic [aquí](./script.js).
+
 ### Resultado
 
 - Caso de no haber seleccinado una opción como el tamaño
