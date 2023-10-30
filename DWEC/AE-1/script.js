@@ -5,7 +5,7 @@ import InputComponent from "./classes/inputComponent.js";
 const main = document.getElementById("main");
 
 /**
- * Función inicia la ejecución del codigo 
+ * Función inicia la ejecución del codigo
  */
 function init() {
   const titulo = document.createElement("h1");
@@ -219,7 +219,6 @@ function req1() {
 function cleanSection(section) {
   const children = Array.from(section.children);
   console.log(children);
-
   children.forEach((child) => {
     section.removeChild(child);
   });
@@ -361,7 +360,6 @@ function req2() {
     })
   );
 
-  // price container
   const priceLabel = document.createElement("p");
   priceLabel.textContent = "Detalles del pedido";
 

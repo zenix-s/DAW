@@ -1,11 +1,11 @@
-export default class InputComponent{
-  constructor(){}
+export default class InputComponent {
+  constructor() {}
   /**
    * Crea un elemento HTML el cual incluye un input y un label
    * {inputType, inputLabel, idName,  options = [], required = false} = opciones
-   * 
+   *
    * @param {{
-   *   inputType: string, 
+   *   inputType: string,
    *   inputLabel: string,
    *   idName: string,
    *   options?: [],
@@ -14,30 +14,48 @@ export default class InputComponent{
    *
    * @returns {HTMLElement}
    */
-  inputContainer(opciones){
-    const {inputType, inputLabel, idName,  options = [], required = false} = opciones
+  inputContainer(opciones) {
+    const {
+      inputType,
+      inputLabel,
+      idName,
+      options = [],
+      required = false,
+    } = opciones;
     const inputContainer = document.createElement("div");
 
-    inputContainer.classList.add("input" + inputType + "Container")
-    
-    
-    inputType === "radio" && (inputContainer.appendChild(this.#radioContainer(options, idName, required)))
-    inputType === "select" && (inputContainer.appendChild(this.#selectContainer(options, idName, required)))
-    inputType === "textarea" && (inputContainer.appendChild(this.#textAreaContainer(required)))
-    inputType === "text" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName, required)))
-    inputType === "checkbox" && (inputContainer.appendChild(this.#standardInputContainer(inputType, idName, required, inputLabel)))
-    inputType === "submit" && (inputContainer.appendChild(this.#standardInputContainer(inputType, required, required, inputLabel)))
-    
-    if (inputType !== "submit"){
-      const labelContainer = this.#labelContainer(inputLabel, idName)
-      
-      inputContainer.appendChild(labelContainer)
+    inputContainer.classList.add("input" + inputType + "Container");
 
+    inputType === "radio" &&
+      inputContainer.appendChild(
+        this.#radioContainer(options, idName, required)
+      );
+    inputType === "select" &&
+      inputContainer.appendChild(
+        this.#selectContainer(options, idName, required)
+      );
+    inputType === "textarea" &&
+      inputContainer.appendChild(this.#textAreaContainer(required));
+    inputType === "text" &&
+      inputContainer.appendChild(
+        this.#standardInputContainer(inputType, idName, required)
+      );
+    inputType === "checkbox" &&
+      inputContainer.appendChild(
+        this.#standardInputContainer(inputType, idName, required, inputLabel)
+      );
+    inputType === "submit" &&
+      inputContainer.appendChild(
+        this.#standardInputContainer(inputType, required, required, inputLabel)
+      );
+
+    if (inputType !== "submit") {
+      const labelContainer = this.#labelContainer(inputLabel, idName);
+
+      inputContainer.appendChild(labelContainer);
     }
 
-
-
-    return inputContainer
+    return inputContainer;
   }
 
   /**
@@ -48,12 +66,12 @@ export default class InputComponent{
    * @param {string} idName - ID del input.
    * @returns {HTMLLabelElement} - Elemento de etiqueta HTML.
    */
-  #labelContainer(inputLabel, idName){
-    const labelContainer = document.createElement("label")
-    labelContainer.textContent = inputLabel
-    labelContainer.setAttribute("for", idName)
+  #labelContainer(inputLabel, idName) {
+    const labelContainer = document.createElement("label");
+    labelContainer.textContent = inputLabel;
+    labelContainer.setAttribute("for", idName);
 
-    return labelContainer
+    return labelContainer;
   }
 
   /**
@@ -65,32 +83,27 @@ export default class InputComponent{
    * @param {boolean} required - Indica si el radio es obligatorio.
    * @returns {HTMLDivElement} - Contenedor de elementos de tipo radio.
    */
-  #radioContainer(Options, idName, required){
+  #radioContainer(Options, idName, required) {
     const radioContainer = document.createElement("div");
 
     Options.forEach((radioOption) => {
       const input = document.createElement("input");
       input.type = "radio";
       input.value = radioOption.value;
-      input.name = idName
-      required && input.setAttribute("required", required)
+      input.name = idName;
+      required && input.setAttribute("required", required);
       const label = document.createElement("label");
       label.textContent = radioOption.label;
 
-      const divCon = document.createElement("div")
-
-      
+      const divCon = document.createElement("div");
 
       divCon.appendChild(input);
       divCon.appendChild(label);
 
-      radioContainer.appendChild(divCon)
-
+      radioContainer.appendChild(divCon);
     });
 
-    
-    
-    return radioContainer
+    return radioContainer;
   }
 
   /**
@@ -102,32 +115,31 @@ export default class InputComponent{
    * @param {boolean} required - Indica si el select es obligatorio.
    * @returns {HTMLDivElement} - Contenedor de elementos de tipo select.
    */
-  #selectContainer(Options, idName, required){
+  #selectContainer(Options, idName, required) {
     const selectContainer = document.createElement("div");
 
-    const select = document.createElement("select")
-    selectContainer.appendChild(select)
+    const select = document.createElement("select");
+    selectContainer.appendChild(select);
     Options.forEach((selectOption) => {
-
       const input = document.createElement("option");
-      required && input.setAttribute("required", required)
+      required && input.setAttribute("required", required);
       input.value = selectOption.value;
-      input.textContent = selectOption.label
+      input.textContent = selectOption.label;
 
       select.appendChild(input);
     });
 
-    return selectContainer
+    return selectContainer;
   }
 
-  #textAreaContainer(required){
+  #textAreaContainer(required) {
     const textAreaContainer = document.createElement("div");
     const textArea = document.createElement("textarea");
-    required && textArea.setAttribute("required", required)
-    textAreaContainer.appendChild(textArea)
-    return textAreaContainer
+    required && textArea.setAttribute("required", required);
+    textAreaContainer.appendChild(textArea);
+    return textAreaContainer;
   }
-  
+
   /**
    * Crea un contenedor para el elemento de tipo input (text, checkbox, submit, etc.).
    *
@@ -138,22 +150,20 @@ export default class InputComponent{
    * @param {string} inputLabel - Etiqueta del input (solo para checkbox y submit).
    * @returns {HTMLInputElement} - Elemento de tipo input HTML.
    */
-  #standardInputContainer(inputType, idName, required, inputLabel){
-    const standardInputContainer = document.createElement("div")
+  #standardInputContainer(inputType, idName, required, inputLabel) {
+    const standardInputContainer = document.createElement("div");
     const input = document.createElement("input");
     input.type = inputType;
-    input.id = idName
+    input.id = idName;
 
-    required && input.setAttribute("required", required)
-    input.setAttribute("name", idName)
-    inputType === "checkbox" && (input.value = inputLabel)
-    inputType === "text" && (input.placeholder = "")
-    inputType === "submit" && (input.value = inputLabel )
-    
+    required && input.setAttribute("required", required);
+    input.setAttribute("name", idName);
+    inputType === "checkbox" && (input.value = inputLabel);
+    inputType === "text" && (input.placeholder = "");
+    inputType === "submit" && (input.value = inputLabel);
+
     standardInputContainer.appendChild(input);
 
-    return input
-
+    return input;
   }
-
 }
