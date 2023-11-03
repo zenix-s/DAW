@@ -1,0 +1,30 @@
+{
+  "ingredientes":[
+    {
+      "name":"Ingrediente 1",
+      "price":1.5
+    },
+    {
+      "name":"Ingrediente 2",
+      "price":2.0
+    },
+    {
+      "name":"Ingrediente 3",
+      "price":2.5
+    }
+  ],
+  "size":[
+    {
+      "name":"Pequeño",
+      "price":5.0
+    },
+    {
+      "name":"Mediano",
+      "price":10.0
+    },
+    {
+      "name":"Grande",
+      "price":15.0
+    }
+  ]
+}
