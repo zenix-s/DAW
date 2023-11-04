@@ -3,13 +3,13 @@ let sizes = {};
 
 function hacerSolicitud(asset, callback) {
   const url = "http://127.0.0.1:5500";
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
 
   xhr.open("GET", url + asset, true);
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      var respuesta = JSON.parse(xhr.responseText);
+      const respuesta = JSON.parse(xhr.responseText);
       callback(respuesta);
     }
   };
@@ -39,7 +39,7 @@ function componentSize({ name }) {
   input.type = "radio";
   input.setAttribute("name", "size");
   input.setAttribute("value", name);
-  input.setAttribute("required", true)
+  input.setAttribute("required", true);
   const label = document.createElement("label");
 
   label.textContent = name;
@@ -63,9 +63,7 @@ function main() {
     });
     datos.size.map((size) => {
       sizes[size.name] = size.price;
-      radioContainer.appendChild(
-        componentSize({name:size.name})
-      )
+      radioContainer.appendChild(componentSize({ name: size.name }));
     });
   });
 }
