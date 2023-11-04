@@ -1,23 +1,8 @@
-let ingridients = {};
-let sizes = {};
+import { getRequest } from "./actions/getRequest.js";
+import Pizza from "./class/pizza.js";
 
-function hacerSolicitud(asset, callback) {
-  const url = "http://127.0.0.1:5500";
-  const xhr = new XMLHttpRequest();
 
-  xhr.open("GET", url + asset, true);
-
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      const respuesta = JSON.parse(xhr.responseText);
-      callback(respuesta);
-    }
-  };
-
-  xhr.send();
-}
-
-function componentIngredient({ name }) {
+function componentIngredient({ name, price }) {
   const inputContainer = document.createElement("div");
   const input = document.createElement("input");
   input.type = "checkbox";
@@ -25,7 +10,7 @@ function componentIngredient({ name }) {
   input.setAttribute("value", name);
   const label = document.createElement("label");
 
-  label.textContent = name;
+  label.textContent = name + " +" + price + "€";
 
   inputContainer.appendChild(label);
   inputContainer.appendChild(input);
@@ -33,38 +18,61 @@ function componentIngredient({ name }) {
   return inputContainer;
 }
 
-function componentSize({ name }) {
+function componentSize({ name, price }) {
   const inputContainer = document.createElement("div");
   const input = document.createElement("input");
   input.type = "radio";
+  input.id = "pizzaSize";
   input.setAttribute("name", "size");
   input.setAttribute("value", name);
   input.setAttribute("required", true);
   const label = document.createElement("label");
 
-  label.textContent = name;
+  label.textContent = name + " +" + price + "€";
 
   inputContainer.appendChild(input);
   inputContainer.appendChild(label);
 
   return inputContainer;
 }
-function main() {
+
+/**
+ *
+ */
+window.addEventListener("load", () => {
   const checkboxContainer = document.getElementById("checkboxcontainer");
   const radioContainer = document.getElementById("radioContainer");
 
   const asset = "/assets/json/pizza.json";
-  hacerSolicitud(asset, function (datos) {
+  getRequest(asset, function (datos) {
     datos.toppings.map((topping) => {
-      ingridients[topping.name] = topping.price;
       checkboxContainer.appendChild(
-        componentIngredient({ name: topping.name })
+        componentIngredient({ name: topping.name, price: topping.price })
       );
     });
     datos.size.map((size) => {
-      sizes[size.name] = size.price;
-      radioContainer.appendChild(componentSize({ name: size.name }));
+      radioContainer.appendChild(
+        componentSize({ name: size.name, price: size.price })
+      );
     });
+  });
+});
+
+function main() {
+  const form = document.getElementById("pizzaForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const ingridients = Array.from(
+      document.querySelectorAll("input[type='checkbox'][name='ingridient']")
+    )
+      .filter((check) => check.checked)
+      .map((check) => check.value);
+    const size = document.querySelector(
+      "input[type='radio'][name='size']:checked"
+    ).value;
+
+    const pizza = new Pizza(size, ingridients);
+    console.log(pizza.checkPrice());
   });
 }
 

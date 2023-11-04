@@ -6,69 +6,74 @@
     <title>Document</title>
   </head>
   <body>
-    <section id="Requerimiento2">
-      <form id="req2form">
-        <div id="pizzasec1"><h2>FaxPizza</h2></div>
-        <div id="subsection">
-          <div id="pizzasec2">
-            <div class="inputtextContainer">
-              <input
-                type="text"
-                id="inputNombreReq2"
-                required="true"
-                name="inputNombreReq2"
-                placeholder=""
-              /><label for="inputNombreReq2">Nombre</label>
+    <header></header>
+    <main>
+      <section class="section">
+        <div id="pizzaFormContainer">
+          <div id="pizzaFormTitle">
+            <h2>FaxPizza</h2>
+          </div>
+          <div>
+            <div id="form">
+              <form action="" id="pizzaForm">
+                <div class="inputtextContainer">
+                  <input
+                    type="text"
+                    id="inputNombre"
+                    required="true"
+                    name="inputNombre"
+                    placeholder=""
+                  /><label for="inputNombre">Nombre</label>
+                </div>
+                <div class="inputtextContainer">
+                  <input
+                    type="text"
+                    id="inputDireccion"
+                    required="true"
+                    name="inputDireccion"
+                    placeholder=""
+                  /><label for="inputDireccion">Direccion</label>
+                </div>
+                <div class="inputtextContainer">
+                  <input
+                    type="text"
+                    id="inputTelefono"
+                    required="true"
+                    name="inputTelefono"
+                    placeholder=""
+                  /><label for="inputTelefono">Telefono</label>
+                </div>
+                <div class="inputtextContainer">
+                  <input
+                    type="text"
+                    id="inputEmail"
+                    required="true"
+                    name="inputEmail"
+                    placeholder=""
+                  /><label for="inputEmail">Email</label>
+                </div>
+                <div class="inputradioContainer">
+                  <div id="radioContainer"></div>
+                  <label for="inputSize">Tamaño</label>
+                </div>
+                <div id="checkboxcontainer"></div>
+                <div class="inputsubmitContainer">
+                  <input
+                    type="submit"
+                    id="false"
+                    name="false"
+                    value="Detallar Pedido"
+                  />
+                </div>
+              </form>
             </div>
-            <div class="inputtextContainer">
-              <input
-                type="text"
-                id="inputDireccionReq2"
-                required="true"
-                name="inputDireccionReq2"
-                placeholder=""
-              /><label for="inputDireccionReq2">Direccion</label>
-            </div>
-            <div class="inputtextContainer">
-              <input
-                type="text"
-                id="inputTelefonoReq2"
-                required="true"
-                name="inputTelefonoReq2"
-                placeholder=""
-              /><label for="inputTelefonoReq2">Telefono</label>
-            </div>
-            <div class="inputtextContainer">
-              <input
-                type="text"
-                id="inputEmailReq2"
-                required="true"
-                name="inputEmailReq2"
-                placeholder=""
-              /><label for="inputEmailReq2">Email</label>
-            </div>
-            <div class="inputradioContainer">
-              <div id="radioContainer">
-                
-              </div>
-              <label for="inputSizeReq2">Tamaño</label>
-            </div>
-            <div id="checkboxcontainer">
-              
-            </div>
-            <div class="inputsubmitContainer">
-              <input
-                type="submit"
-                id="false"
-                name="false"
-                value="Detallar Pedido"
-              />
+            <div id="pizzaDetails">
+              <h3>Detalles del pedido</h3>
             </div>
           </div>
-          <div id="pizzasec3"><p>Detalles del pedido</p></div>
         </div>
-      </form>
-    </section>
+      </section>
+    </main>
     <script src="src/main.js" type="module"></script>
   </body>
 </html>
