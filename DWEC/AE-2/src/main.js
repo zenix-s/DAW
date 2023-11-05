@@ -1,8 +1,7 @@
 import { getRequest } from "./actions/getRequest.js";
 import Pizza from "./class/pizza.js";
 
-
-function componentIngredient({ name, price }) {
+function createIngredientComponent({ name, price }) {
   const inputContainer = document.createElement("div");
   const input = document.createElement("input");
   input.type = "checkbox";
@@ -18,7 +17,7 @@ function componentIngredient({ name, price }) {
   return inputContainer;
 }
 
-function componentSize({ name, price }) {
+function createSizeComponent({ name, price }) {
   const inputContainer = document.createElement("div");
   const input = document.createElement("input");
   input.type = "radio";
@@ -40,27 +39,36 @@ function componentSize({ name, price }) {
  *
  */
 window.addEventListener("load", () => {
-  const checkboxContainer = document.getElementById("checkboxcontainer");
-  const radioContainer = document.getElementById("radioContainer");
-
   const asset = "/assets/json/pizza.json";
-  getRequest(asset, function (datos) {
-    datos.toppings.map((topping) => {
-      checkboxContainer.appendChild(
-        componentIngredient({ name: topping.name, price: topping.price })
-      );
-    });
-    datos.size.map((size) => {
-      radioContainer.appendChild(
-        componentSize({ name: size.name, price: size.price })
-      );
-    });
-  });
+  // getRequest(asset, function (datos) {
+  //
+  // });
 });
 
-function main() {
+async function getPizzaPrice(size, ingridients) {
+  const pizza = new Pizza(size, ingridients);
+  return await pizza.checkPrice();
+}
+
+async function main() {
+  const checkboxContainer = document.getElementById("checkboxcontainer");
+  const radioContainer = document.getElementById("radioContainer");
+  const asset = "/assets/json/pizza.json";
+  const datos = await getRequest(asset);
+  datos.toppings.map((topping) => {
+    checkboxContainer.appendChild(
+      createIngredientComponent({ name: topping.name, price: topping.price })
+    );
+  });
+  datos.size.map((size) => {
+    radioContainer.appendChild(
+      createSizeComponent({ name: size.name, price: size.price })
+    );
+  });
+
   const form = document.getElementById("pizzaForm");
-  form.addEventListener("submit", (e) => {
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const ingridients = Array.from(
       document.querySelectorAll("input[type='checkbox'][name='ingridient']")
@@ -71,8 +79,8 @@ function main() {
       "input[type='radio'][name='size']:checked"
     ).value;
 
-    const pizza = new Pizza(size, ingridients);
-    console.log(pizza.checkPrice());
+    const price = await getPizzaPrice(size, ingridients);
+    console.log(price);
   });
 }
 

@@ -9,24 +9,22 @@ export default class Pizza {
    *
    * @returns {int} precio de la pizza
    */
-  checkPrice() {
+  async checkPrice() {
     const asset = "/assets/json/pizza.json";
     let price = 0;
-    getRequest(asset, (datos) => {
-      let ingridients = {};
-      let sizes = {};
-      datos.toppings.map((topping) => {
-        ingridients[topping.name] = topping.price;
-      });
-      datos.size.map((size) => {
-        sizes[size.name] = size.price;
-      });
-      price = price + sizes[this.size];
-      this.ingridients.forEach((ing) => {
-        price = price + ingridients[ing]
-      });
-      return price;
+    const datos = await getRequest(asset);
+    let ingridients = {};
+    let sizes = {};
+    datos.toppings.map((topping) => {
+      ingridients[topping.name] = topping.price;
     });
-
+    datos.size.map((size) => {
+      sizes[size.name] = size.price;
+    });
+    price = price + sizes[this.size];
+    this.ingridients.forEach((ing) => {
+      price = price + ingridients[ing];
+    });
+    return price;
   }
 }
