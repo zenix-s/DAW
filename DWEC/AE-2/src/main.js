@@ -11,8 +11,8 @@ function createIngredientComponent({ name, price }) {
 
   label.textContent = name + " +" + price + "€";
 
-  inputContainer.appendChild(label);
   inputContainer.appendChild(input);
+  inputContainer.appendChild(label);
 
   return inputContainer;
 }
@@ -35,15 +35,7 @@ function createSizeComponent({ name, price }) {
   return inputContainer;
 }
 
-/**
- *
- */
-window.addEventListener("load", () => {
-  const asset = "/assets/json/pizza.json";
-  // getRequest(asset, function (datos) {
-  //
-  // });
-});
+
 
 async function getPizzaPrice(size, ingridients) {
   const pizza = new Pizza(size, ingridients);
@@ -55,6 +47,7 @@ async function main() {
   const radioContainer = document.getElementById("radioContainer");
   const asset = "/assets/json/pizza.json";
   const datos = await getRequest(asset);
+  console.log("datos" + datos);
   datos.toppings.map((topping) => {
     checkboxContainer.appendChild(
       createIngredientComponent({ name: topping.name, price: topping.price })
@@ -70,6 +63,9 @@ async function main() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const ingridientsSpan = document.getElementById("ingridientsSpan");
+    const sizeSpan = document.getElementById("sizeSpan");
+    const priceSpan = document.getElementById("priceSpan");
     const ingridients = Array.from(
       document.querySelectorAll("input[type='checkbox'][name='ingridient']")
     )
@@ -80,7 +76,12 @@ async function main() {
     ).value;
 
     const price = await getPizzaPrice(size, ingridients);
-    console.log(price);
+
+    priceSpan.textContent = price;
+    sizeSpan.textContent = size;
+    ingridients.forEach((ingridient) => {
+      ingridientsSpan.textContent = ingridientsSpan.textContent + (ingridientsSpan.textContent == "" ? "" : ", ") + ingridient
+    });
   });
 }
 

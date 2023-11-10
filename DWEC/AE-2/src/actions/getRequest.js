@@ -1,5 +1,5 @@
 export function getRequest(asset) {
-  const url = "http://127.0.0.1:5500";
+  const url = "http://127.0.0.1:5500/AE-2";
 
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
