@@ -31,13 +31,17 @@ Valoración: 3 puntos sobre 10
 ## Comprobaciones
 
 Formulario base sin pulsar boton de detallar pedido
+</br>
 ![Alt text](readme/image.png)
 
 Formulario base al detallar pedido se pueden ver los datos del pedido
+</br>
 ![Alt text](readme/image-1.png)
 
 Al pulsar el boton de reiniciar se elimina todo rastro del contenido anterior
+</br>
 ![Alt text](readme/image-2.png)
 
 Al alterar el contenido del json y pulsar el boton reiniciar se añade el nuevo producto
+</br>
 ![Alt text](readme/image-3.png)
