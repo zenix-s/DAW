@@ -28,3 +28,16 @@ Si pulsamos el botón de procesar el pedido, la web mostrará el resultado del p
 
 Valoración: 3 puntos sobre 10
 
+## Comprobaciones
+
+Formulario base sin pulsar boton de detallar pedido
+![Alt text](readme/image.png)
+
+Formulario base al detallar pedido se pueden ver los datos del pedido
+![Alt text](readme/image-1.png)
+
+Al pulsar el boton de reiniciar se elimina todo rastro del contenido anterior
+![Alt text](readme/image-2.png)
+
+Al alterar el contenido del json y pulsar el boton reiniciar se añade el nuevo producto
+![Alt text](readme/image-3.png)

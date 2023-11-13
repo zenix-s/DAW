@@ -19,6 +19,10 @@
     {
       "name": "Aceitunas",
       "price": 1.5
+    },
+    {
+      "name": "Bacon",
+      "price": 2.0
     }
   ],
   "size": [

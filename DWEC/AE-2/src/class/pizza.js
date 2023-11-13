@@ -6,7 +6,7 @@ export default class Pizza {
   }
 
   /**
-   *
+   * calcula el precio de la pizza basado en los datos requeridos por el get en la llamada al asset pizza.json
    * @returns {int} precio de la pizza
    */
   async checkPrice() {
