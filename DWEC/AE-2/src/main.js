@@ -64,6 +64,7 @@ async function main() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const ingridientsSpan = document.getElementById("ingridientsSpan");
+    ingridientsSpan.textContent = ""
     const sizeSpan = document.getElementById("sizeSpan");
     const priceSpan = document.getElementById("priceSpan");
     const ingridients = Array.from(
