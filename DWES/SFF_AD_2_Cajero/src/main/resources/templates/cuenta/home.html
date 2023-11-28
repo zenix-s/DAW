@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a class="activeNavTab" th:href="@{/cuenta}">
+						Inicio
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/cuenta/movimientos}">
+						Movimientos
+					</a>
+				</li>
+				<li>
+					<a>
+						Ingresar
+					</a>
+				</li>
+				<li>
+					<a>
+						Extraer
+					</a>
+				</li>
+				<li>
+					<a>
+						Trasferencia
+					</a>
+				</li>
+				<li>
+					<a>
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<header>
+		<p>
+			<span>La cuenta es: </span>
+			<span th:text="${idCuenta}"></span>
+		</p>
+		<h2>Ultima accion realizada: <span th:text="${message}"></span></h2>
+	</header>
+	<div>
+		<form th:action="@{/logidacc}" method="post">
+			<div>
+				<label>
+					Introduce el id de la cuenta
+				</label>				
+				<input type="text" name="idCuenta" placeholder="id Cuenta"/>
+			</div>	
+			<input type="submit" value="Cargar"/>
+		</form>
+	</div>
+	
+</body>
+</html>

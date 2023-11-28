@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a th:href="@{/cuenta}">
+						Inicio
+					</a>
+				</li>
+				<li>
+					<a class="activeNavTab" th:href="@{/cuenta/movimientos}">
+						Movimientos
+					</a>
+				</li>
+				<li>
+					<a>
+						Ingresar
+					</a>
+				</li>
+				<li>
+					<a>
+						Extraer
+					</a>
+				</li>
+				<li>
+					<a>
+						Trasferencia
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/endidacc}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+<div>
+	<p>Cuenta: <span th:text="${idCuenta}"></span></p>
+	<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
+</div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID Movimiento</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th>Operación</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="movimiento : ${movimientos}">
+            <td th:text="${movimiento.idMovimiento}"></td>
+            <td th:text="${movimiento.fecha}"></td>
+            <td th:text="${movimiento.cantidad}"></td>
+            <td th:text="${movimiento.operacion}"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
