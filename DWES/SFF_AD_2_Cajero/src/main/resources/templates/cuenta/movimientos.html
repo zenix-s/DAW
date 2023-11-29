@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
-<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<header id="navBar">
 		<nav>
@@ -21,17 +23,17 @@
 					</a>
 				</li>
 				<li>
-					<a>
+					<a th:href="@{/cuenta/ingresar}">
 						Ingresar
 					</a>
 				</li>
 				<li>
-					<a>
+					<a th:href="@{/cuenta/extraer}">
 						Extraer
 					</a>
 				</li>
 				<li>
-					<a>
+					<a th:href="@{/cuenta/transferencia}">
 						Trasferencia
 					</a>
 				</li>
@@ -44,30 +46,30 @@
 		</nav>
 	</header>
 
-<div>
-	<p>Cuenta: <span th:text="${idCuenta}"></span></p>
-	<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
-</div>
+	<div>
+		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
+		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
+	</div>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID Movimiento</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th>Operación</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="movimiento : ${movimientos}">
-            <td th:text="${movimiento.idMovimiento}"></td>
-            <td th:text="${movimiento.fecha}"></td>
-            <td th:text="${movimiento.cantidad}"></td>
-            <td th:text="${movimiento.operacion}"></td>
-        </tr>
-    </tbody>
-</table>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID Movimiento</th>
+				<th>Fecha</th>
+				<th>Cantidad</th>
+				<th>Operación</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="movimiento : ${movimientos}">
+				<td th:text="${movimiento.idMovimiento}"></td>
+				<td th:text="${movimiento.fecha}"></td>
+				<td th:text="${movimiento.cantidad}"></td>
+				<td th:text="${movimiento.operacion}"></td>
+			</tr>
+		</tbody>
+	</table>
 
 </body>
+
 </html>

@@ -35,5 +35,14 @@ public class Movimiento
 	@ManyToOne
 	@JoinColumn(name="id_cuenta")
 	private Cuenta cuenta;
+
+	public Movimiento(double cantidad, Cuenta cuenta, Date fecha, String operacion) {
+		super();
+		this.fecha = fecha;
+		this.cantidad = cantidad;
+		this.operacion = operacion;
+		this.cuenta = cuenta;
+	}
+	
 	
 }

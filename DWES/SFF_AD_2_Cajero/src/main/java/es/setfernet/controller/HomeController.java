@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.setfernet.modelo.dao.CuentaDao;
+import es.setfernet.modelo.entitybean.Cuenta;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -18,9 +19,10 @@ public class HomeController {
 	@GetMapping({"","/","/home"})
 	public String home(HttpSession session, Model model) {
 		
-		Object idCuentaAttribute = session.getAttribute("idCuenta");
-		String idCuentaValue = (idCuentaAttribute != null) ? idCuentaAttribute.toString() : null;
-		model.addAttribute("idCuenta", idCuentaValue);
+		String idCuenta = session.getAttribute("idCuenta") != null ? session.getAttribute("idCuenta").toString() : null;
+		if(idCuenta != null)
+			return "redirect:/cuenta";
+		
 		
 		return "home";
 	}
@@ -28,7 +30,12 @@ public class HomeController {
 	@PostMapping("/logidacc")
 	public String setIdAccSession(HttpSession session, @RequestParam int idCuenta)
 	{
-		System.out.println(idCuenta);
+		Cuenta cuenta = cdao.findAcc(idCuenta);
+		if (cuenta == null)
+		{
+			return ("redirect:/");
+		}
+		
 		session.setAttribute("idCuenta", idCuenta);
 		return ("redirect:/cuenta");
 	}

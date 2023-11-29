@@ -42,8 +42,12 @@ public class ImplementMovimientoDao implements MovimientoDao{
 
 	@Override
 	public int updateMov(Movimiento movimiento) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {			
+			movrep.save(movimiento);
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override

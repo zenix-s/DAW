@@ -25,7 +25,7 @@ public class Cuenta
 	@Column(name="id_cuenta")
 	private int idCuenta;
 	@Column(name="saldo")
-	private int saldo;
+	private double saldo;
 	@Column(name="tipo_cuenta")
 	private String tipoCuenta;
 	

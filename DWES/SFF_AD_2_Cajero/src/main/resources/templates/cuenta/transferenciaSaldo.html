@@ -13,7 +13,7 @@
 		<nav>
 			<ul>
 				<li>
-					<a class="activeNavTab" th:href="@{/cuenta}">
+					<a th:href="@{/cuenta}">
 						Inicio
 					</a>
 				</li>
@@ -33,7 +33,7 @@
 					</a>
 				</li>
 				<li>
-					<a th:href="@{/cuenta/transferencia}">
+					<a class="activeNavTab" th:href="@{/cuenta/transferencia}">
 						Trasferencia
 					</a>
 				</li>
@@ -48,8 +48,24 @@
 	<div>
 		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
 		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
-    	<p>Ultima Acción: <span th:text="${mensaje}"></span></p>
 	</div>
+	<section>
+		<form th:action="@{/cuenta/transferencia}" method="post">
+			<div>
+				<label>
+					Cuenta de destino
+				</label>				
+				<input type="text" name="destAcc" placeholder="id Cuenta Destino"/>
+			</div>	
+			<div>
+				<label>
+					Introduce la cantidad
+				</label>				
+				<input type="text" name="saldo" placeholder="Saldo"/>
+			</div>	
+			<input type="submit" value="Transferir"/>
+		</form>
+	</section>
 </body>
 
 </html>

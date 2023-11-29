@@ -13,7 +13,7 @@
 		<nav>
 			<ul>
 				<li>
-					<a class="activeNavTab" th:href="@{/cuenta}">
+					<a th:href="@{/cuenta}">
 						Inicio
 					</a>
 				</li>
@@ -23,12 +23,12 @@
 					</a>
 				</li>
 				<li>
-					<a th:href="@{/cuenta/ingresar}">
+					<a  th:href="@{/cuenta/ingresar}">
 						Ingresar
 					</a>
 				</li>
 				<li>
-					<a th:href="@{/cuenta/extraer}">
+					<a class="activeNavTab" th:href="@{/cuenta/extraer}">
 						Extraer
 					</a>
 				</li>
@@ -48,8 +48,18 @@
 	<div>
 		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
 		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
-    	<p>Ultima Acción: <span th:text="${mensaje}"></span></p>
 	</div>
+	<section>
+		<form th:action="@{/cuenta/resSaldo}" method="post">
+			<div>
+				<label>
+					Introduce la cantidad
+				</label>				
+				<input type="text" name="extraersaldo" placeholder="id Cuenta"/>
+			</div>	
+			<input type="submit" value="Ingresar"/>
+		</form>
+	</section>
 </body>
 
 </html>
