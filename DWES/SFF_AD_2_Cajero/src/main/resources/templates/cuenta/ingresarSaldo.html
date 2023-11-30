@@ -47,15 +47,15 @@
 	</header>
 	<div>
 		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
-		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
+		<p>Saldo cuenta: <span th:text="${cuenta.saldo} + €"></span></p>
 	</div>
 	<section>
 		<form th:action="@{/cuenta/addSaldo}" method="post">
 			<div>
 				<label>
-					Introduce la cantidad
+					Introduce la cantidad a ingresar
 				</label>				
-				<input type="text" name="ingresosaldo" placeholder="id Cuenta"/>
+				<input type="text" name="ingresosaldo" placeholder="Cantidad a ingresar" pattern="[0-9]+(\.[0-9]+)?" title="Un numero"/>
 			</div>	
 			<input type="submit" value="Ingresar"/>
 		</form>

@@ -20,6 +20,8 @@ input[type="submit"],
 textarea,
 select {
 	width: 100%;
+	padding: 8px;
+	font-size: 16px;
 }
 .buttonContainer{
 	padding: 20px 0px;	

@@ -46,9 +46,9 @@
 		</nav>
 	</header>
 	<div>
+    	<p th:text="${mensaje}"></p>
 		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
-		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
-    	<p>Ultima Acción: <span th:text="${mensaje}"></span></p>
+		<p>Saldo cuenta: <span th:text="${cuenta.saldo} + €"></span></p>
 	</div>
 </body>
 

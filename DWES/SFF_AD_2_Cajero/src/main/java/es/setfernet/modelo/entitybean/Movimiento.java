@@ -36,6 +36,7 @@ public class Movimiento
 	@JoinColumn(name="id_cuenta")
 	private Cuenta cuenta;
 
+	
 	public Movimiento(double cantidad, Cuenta cuenta, Date fecha, String operacion) {
 		super();
 		this.fecha = fecha;

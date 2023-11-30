@@ -13,10 +13,7 @@ public class ImplementMovimientoDao implements MovimientoDao{
 	@Autowired
 	private MovimientoRepository movrep;
 
-	@Override
-	public List<Movimiento> findAllMov() {
-		return movrep.findAll();
-	}
+	
 	
 	@Override
 	public List<Movimiento> findAllMovById(int idCuenta)
@@ -24,11 +21,7 @@ public class ImplementMovimientoDao implements MovimientoDao{
 		return movrep.findAllMovByIdCuenta(idCuenta);
 	}
 
-	@Override
-	public Movimiento findMov(int idMovimiento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public Movimiento insertMov(Movimiento movimiento) {
@@ -38,21 +31,5 @@ public class ImplementMovimientoDao implements MovimientoDao{
 			System.err.println(e.getMessage());
 			return null;
 		}
-	}
-
-	@Override
-	public int updateMov(Movimiento movimiento) {
-		try {			
-			movrep.save(movimiento);
-			return 1;
-		} catch (Exception e) {
-			return 0;
-		}
-	}
-
-	@Override
-	public int deleteMov(int idMovimiento) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

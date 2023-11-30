@@ -16,23 +16,40 @@ import jakarta.servlet.http.HttpSession;
 public class HomeController {
 	@Autowired
 	private CuentaDao cdao;
+	/**
+	 * Gestiona las peticiones get a las rutas / /home, comprueba si ya existe un idCuenta y que esta sea valido
+	 * Si ese es el caso nos redirije a la dirección /cuenta
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@GetMapping({"","/","/home"})
 	public String home(HttpSession session, Model model) {
 		
 		String idCuenta = session.getAttribute("idCuenta") != null ? session.getAttribute("idCuenta").toString() : null;
-		if(idCuenta != null)
-			return "redirect:/cuenta";
-		
-		
+		if(idCuenta == null)
+			return "home";
+		Cuenta cuenta = cdao.findAcc(Integer.parseInt(idCuenta));
+		if (cuenta != null)
+			return ("redirect:/cuenta");		
 		return "home";
 	}
 	
+	/**
+	 * Recibe el id de una cuenta y si este es valido lo carga en el atributo session
+	 * @param session
+	 * @param idCuenta - El id de la cuenta en la cual se quieren realizar las operaciones
+	 * @param ratt
+	 * @return
+	 */
 	@PostMapping("/logidacc")
-	public String setIdAccSession(HttpSession session, @RequestParam int idCuenta)
+	public String setIdAccSession(HttpSession session, @RequestParam int idCuenta, RedirectAttributes ratt)
 	{
 		Cuenta cuenta = cdao.findAcc(idCuenta);
 		if (cuenta == null)
 		{
+			ratt.addFlashAttribute("error", "No se ha podido conectar con la cuenta especificada - Cuenta no existe");
+	
 			return ("redirect:/");
 		}
 		

@@ -47,7 +47,7 @@
 	</header>
 	<div>
 		<p>Cuenta: <span th:text="${idCuenta}"></span></p>
-		<p>Saldo cuenta: <span th:text="${cuenta.saldo}"></span></p>
+		<p>Saldo cuenta: <span th:text="${cuenta.saldo} + €"></span></p>
 	</div>
 	<section>
 		<form th:action="@{/cuenta/transferencia}" method="post">
@@ -55,13 +55,13 @@
 				<label>
 					Cuenta de destino
 				</label>				
-				<input type="text" name="destAcc" placeholder="id Cuenta Destino"/>
+				<input type="text" name="destAcc" placeholder="id Cuenta Destino" required pattern="[0-9]+" title="El id de una cuenta valor numerico ej 1000"/>
 			</div>	
 			<div>
 				<label>
-					Introduce la cantidad
+					Introduce la cantidad a transferir
 				</label>				
-				<input type="text" name="saldo" placeholder="Saldo"/>
+				<input type="text" name="saldo" placeholder="Saldo a transferir" required pattern="[0-9]+(\.[0-9]+)?" title="El valor monetario a mandar un número"/>
 			</div>	
 			<input type="submit" value="Transferir"/>
 		</form>

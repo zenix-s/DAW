@@ -170,8 +170,11 @@ public class CuentaController {
 
 		// Se verifica si la cuenta de destino y de origen no son la misma
 		if (Integer.parseInt(idCuenta) == destIdAcc)
+		{
+			ratt.addFlashAttribute("mensaje", "La cuenta de destino y la cuenta actual no pueden ser la misma");
 			return "redirect:/cuenta";
-
+		}
+		
 		// Se obtine la cuenta de origen
 		Cuenta cuentaOrigen = cdao.findAcc(Integer.parseInt(idCuenta));
 		
