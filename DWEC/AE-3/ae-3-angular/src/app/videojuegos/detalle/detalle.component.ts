@@ -18,6 +18,7 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      int
       console.log(params['id']);
     });
   }
