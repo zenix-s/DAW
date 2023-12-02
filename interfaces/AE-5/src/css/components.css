@@ -1,1 +1,111 @@
+:root {
+  --primary_color: #b2e7d5;
+  --secondary_color: #bad2e7;
+  --accent_color: #caffca;
+  --base_color: #ffffff;
+  --base25: #22222225;
+  --base75: #222222bc;
+  --base100: #222222;
+  --text_white: #ffffff;
+  --text_black: #000000;
+  --text_grey_clear: #cccccc;
+  --text_grey_dark: #333333;
+  --success_color: #6be96b;
+  --info_color: #a0d5f2;
+  --warning_color: #ffae2d;
+  --error_color: #ff6767;
+}
+
+/* HEADER */
+.header {
+  background-color: var(--base_color);
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px;
+}
+.headerLogo {
+  height: 72px;
+  width: 72px;
+}
+.headerLogo > a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.headerNavContainer > nav {
+  height: 100%;
+}
+.headerNavContainer > nav > ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  padding: 16px;
+  gap: 32px;
+}
+.headerNavContainer > nav > ul > li {
+  height: 100%;
+  width: 136px;
+  border-radius: 8px;
+  background-color: var(--primary_color);
+}
+.headerNavContainer > nav > ul > li > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerUser {
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+}
+
 /* BUTTON */
+.button {
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  color: var(--text_grey_dark);
+  padding: 0.8em 1.6em;
+  font-size: 16px;
+  border-radius: 0.5em;
+  background: var(--base_color);
+  border: 1px solid var(--base25);
+  box-shadow: 0px 4px 4px 0px var(--base25);
+}
+
+.button:active {
+  color: var(--base75);
+  box-shadow: 0px 4px 4px 0px var(--accent_color);
+}
+
+.button:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: var(--primary_color);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.35s;
+  z-index: -1;
+}
+
+.button:hover {
+  border: 1px solid var(--primary_color);
+}
+
+.button:hover:after {
+  top: -45%;
+  background-color: var(--primary_color);
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
