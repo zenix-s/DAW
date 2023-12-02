@@ -1,0 +1,8 @@
+<main>
+  <p>Listado Videojuegos</p>
+  <ul>
+    <li *ngFor="let game of games">
+      <app-list-item [game]=game></app-list-item>
+    </li>
+  </ul>
+</main>

@@ -1,0 +1,15 @@
+a {
+  border: 1px solid #B6BBC475;
+  height: 300px;
+  width: 200px;
+  display: flex;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 16px;
+  background-color: #ffffff15;
+  transition: all 150ms ;
+}
+
+a:hover{
+  background-color: #ffffff25;
+}
