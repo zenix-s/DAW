@@ -1,0 +1,43 @@
+.highlited-video-section {
+  background-color: var(--primary_color);
+  display: flex;
+  padding: 128px 64px;
+}
+.highlited-video-section .video{
+  height: 432px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  aspect-ratio: 16/9;
+  background-color: red;
+}
+.highlited-video-section .text-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0px 32px;
+}
+.highlited-video-section .title {
+  font-weight: 700;
+  font-size: 40px;
+}
+.highlited-video-section .description {
+  font-size: 24px;
+}
+
+.highlited-video-section .autor {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.highlited-articles-section {
+  background-color: var(--base_color);
+  display: flex;
+  justify-content: space-around;
+  padding: 64px 32px;
+}
