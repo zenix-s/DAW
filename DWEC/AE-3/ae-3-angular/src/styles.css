@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body{
-  background-color: #31304D;
+  background: linear-gradient(180deg,#2c2d3c 0,#191a23 50%);
   min-height: 100vh; 
 }
 ul{
