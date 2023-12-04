@@ -9,6 +9,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { ListItemComponent } from './videojuegos/listado/list-item/list-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListItemComponent } from './videojuegos/listado/list-item/list-item.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

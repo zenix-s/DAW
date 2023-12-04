@@ -6,6 +6,7 @@
 }
 body{
   background-color: #31304D;
+  min-height: 100vh; 
 }
 ul{
   list-style: none;

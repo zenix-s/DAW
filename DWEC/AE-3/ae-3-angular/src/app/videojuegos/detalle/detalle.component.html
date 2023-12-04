@@ -1,1 +1,6 @@
-<p>detalle works!</p>
+<div *ngIf="game">
+  {{game.titulo}}
+</div>
+<div *ngIf="!game">
+  Juego no encontrado
+</div>
