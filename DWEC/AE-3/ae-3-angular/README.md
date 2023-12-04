@@ -60,20 +60,20 @@ En caso de iniciar con un usuario y contraseña validos nos redirigira a `/`
 Listado de usuarios validos
 
 ```json
-  users = [
-    {
-      userName: 'root',
-      password: 'root',
-    },
-    {
-      userName: 'user',
-      password: 'user',
-    },
-    {
-      userName: 'zenix-s',
-      password: 'zenix-s',
-    },
-  ];
+[
+  {
+    userName: 'root',
+    password: 'root',
+  },
+  {
+    userName: 'user',
+    password: 'user',
+  },
+  {
+    userName: 'zenix-s',
+    password: 'zenix-s',
+  },
+]
 ```
 
 En la vista principal tenemos un listado con los videojuegos y nuestro usuario
