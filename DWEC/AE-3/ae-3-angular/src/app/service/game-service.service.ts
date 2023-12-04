@@ -19,10 +19,10 @@ export class GameServiceService {
     },
     {
       id: 2,
-      titulo: 'The Legend of Zelda: Breath of the Wild',
-      compania: 'Nintendo',
-      imagen: 'zelda_breath_of_the_wild.jpg',
-      valoracionMedia: 4.8,
+      titulo: 'Baldurs Gate 3',
+      compania: 'Larian Studios',
+      imagen: 'baldurs_gate_3.jpg',
+      valoracionMedia: 4.9,
     },
     {
       id: 3,

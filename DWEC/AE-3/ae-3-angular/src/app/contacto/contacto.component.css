@@ -1,0 +1,80 @@
+
+:host{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2{
+  font-size: 24px;
+  color: white;
+  padding: 16px;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+button {
+  color: #ffffff;
+  padding: 10px;
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #ffffff42;
+}
+
+.succesToast{
+  position: absolute;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #329632;
+  color: white;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.succesToast > button{
+  width: min-content;
+  height: auto;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

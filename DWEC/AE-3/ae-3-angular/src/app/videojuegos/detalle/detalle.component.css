@@ -1,0 +1,38 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.returnButton{
+  width: max-content;
+  border: 1px solid white;
+  color: white; 
+  padding: 16px;
+  transition: all 250ms;
+}
+.returnButton:hover{
+  background-color: #ffffff25;
+}
+
+.gameContainer{
+  width: max-content;
+}
+
+.gameContainer div{
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  border: 1px solid white;
+  padding: 8px;
+}
+
+.gameContainer span{
+  font-size: 16px;
+  color: white;
+}
+
+.gameContainer img{
+  width: 500px;
+  height: auto;
+}

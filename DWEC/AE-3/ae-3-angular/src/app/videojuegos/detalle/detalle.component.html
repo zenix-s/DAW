@@ -1,18 +1,35 @@
-<div>
-  <a routerLink="/">Volver</a>
-</div>
-<div *ngIf="game">
+<a class="returnButton" routerLink="/">Volver</a>
+<div class="gameContainer" *ngIf="game">
   <div>
-    {{game.id}}
+    <span>Id: </span>
+    <span>{{game.id}}</span>
   </div>
   <div>
-    {{game.titulo}}
+    <span>
+      Titulo:
+    </span>
+    <span>
+      {{game.titulo}}
+    </span>
   </div>
   <div>
-    {{game.compania}}
+    <span>
+      Compañia:
+    </span>
+    <span>
+      {{game.compania}}
+    </span>
   </div>
   <div>
-    {{game.valoracionMedia}}
+    <span>
+      Valoración Media
+    </span>
+    <span>
+      {{game.valoracionMedia}}
+    </span>
+  </div>
+  <div>
+    <img [src]="'/assets/img/' + game.imagen" alt="">
   </div>
 </div>
 <div *ngIf="!game">

@@ -16,6 +16,9 @@ export class AsideComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+  /**
+   * Cierra la sesion usando la función logout del servicio AuthenticationService
+   */
   logOut(): void {
     this.authService.logout();
   }

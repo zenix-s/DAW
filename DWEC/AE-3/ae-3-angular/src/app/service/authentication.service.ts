@@ -23,8 +23,12 @@ export class AuthenticationService {
       userName: 'user',
       password: 'user',
     },
+    {
+      userName: 'zenix-s',
+      password: 'zenix-s',
+    },
   ];
-  
+
   /**
    * Función encargada de comprobar la credenciales aportadas son validas.
    * Si ha encontrado las credenciales correctas establece el estado de la sesión como inciado.
@@ -59,7 +63,7 @@ export class AuthenticationService {
   }
 
   /**
-   * 
+   *
    * @returns Devuelve un booleano en función de si existe un usuario registrado o no
    */
   isLoggedIn(): boolean {

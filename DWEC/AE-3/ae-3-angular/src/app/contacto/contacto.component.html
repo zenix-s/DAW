@@ -1,1 +1,22 @@
-<p>contacto works!</p>
+<div>
+  <h2>Contacto</h2>
+  <form (ngSubmit)="contact(  )">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" name="correo" required>
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" name="mensaje" required></textarea>
+
+    <button type="submit">Enviar mensaje</button>
+  </form>
+</div>
+
+<div *ngIf="isSended" class="succesToast">
+  Gracias por contactarnos 
+  <button (click)="noContact()">
+    X
+  </button>
+</div>

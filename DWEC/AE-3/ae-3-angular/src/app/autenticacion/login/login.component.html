@@ -7,3 +7,9 @@
 
   <button type="submit">Iniciar Sesión</button>
 </form>
+<div *ngIf="loginFailed" class="errorToast">
+  No se ha podido iniciar la sesión.
+  <button (click)="desactivateLoginFailed()">
+    X
+  </button>
+</div>
