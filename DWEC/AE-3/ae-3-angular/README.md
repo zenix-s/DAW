@@ -59,7 +59,7 @@ En caso de iniciar con un usuario y contraseña validos nos redirigira a `/`
 
 Listado de usuarios validos
 
-```json
+```ts
 [
   {
     userName: 'root',
