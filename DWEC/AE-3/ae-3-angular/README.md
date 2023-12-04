@@ -19,7 +19,7 @@ Utilizando el comando `ng serve -o` abriremos un servidor el cual nos permitira 
 
 Se empieza por este requerimiento ya que es lo primero en experimentar el usuario
 
-Independientemente de a donde trate de dirigirse el usuario en caso de no estar logueado sera redirigido a la pagina de login.
+Independientemente de a donde trate de dirigirse el usuario en caso de no estar logueado sera redirigido a la pagina de ![login](src/app/autenticacion/login).
 
 ![Alt text](README/image.png)
 
@@ -64,7 +64,7 @@ Las vistan han sido protegidas usando un ![guard](src/app/guard/auth-loggin.guar
 >
 >Se valorarán los estilos en la aplicación, aplicar “routing” y comunicación entre componentes.
 
-En la vista principal tenemos un listado con los videojuegos y nuestro usuario
+En la !['vista principal'](src/app/videojuegos/listado) tenemos un listado con los videojuegos y nuestro usuario
 
 ![Alt text](image.png)
 
@@ -72,7 +72,7 @@ Tambien tenemos la vista ![about-us](src/app/aboutus) en la cual podemos ver dat
 
 ![Alt text](image-1.png)
 
-La vista Contacto ofrece un formulario para contactar con el administrador
+La vista ![Contacto](src/app/contacto) ofrece un formulario para contactar con el administrador
 
 ![Alt text](image-2.png)
 
@@ -80,7 +80,7 @@ En caso de ser submiteado da feedback al usuario
 
 ![Alt text](image-3.png)
 
-Volviendo a la lista de videojuegos si accedemos a cualquiera de ellos tendremos los detalles del mismo.
+Volviendo a la lista de videojuegos si accedemos a cualquiera de ellos tendremos los !['detalles del videojuego'](src/app/videojuegos/detalle).
 Tambien tenemos y botos para volver a la lista de juegos disponibles.
 
 ![Alt text](image-4.png)
@@ -89,5 +89,5 @@ En nuestra barra lateral tambien poseemos un boton que cerrara la sesión.
 
 ## Aclaraciones adicionales
 
-El sistema de autentificación de usuarios se ha realziado usando servicios.
+El sistema de autentificación de usuarios se ha realziado usando ![servicios](src/app/service/authentication.service.ts).
 Debido a la naturaleza volatil de estos recargar la pagina provocara el deslogueo del usuario.
