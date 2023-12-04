@@ -1,0 +1,10 @@
+<aside>
+  <nav>
+    <ul>
+      <li><a routerLink="" class="aside-link">Inicio</a></li>
+      <li><a routerLink="/contacto" class="aside-link">Contacto</a></li>
+      <li><a routerLink="/about-us" class="aside-link">About us</a></li>
+      <li *ngIf="this.isLogged()"><button (click)="this.logOut()" class="aside-link">LogOut</button></li>
+    </ul>
+  </nav>
+</aside>

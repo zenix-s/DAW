@@ -4,6 +4,10 @@ import { Videojuego } from '../modelo/Videojuego';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * Servicio encargado de gestionar operaciones crud con los videojuegos
+ */
 export class GameServiceService {
   private listGame: Videojuego[] = [
     {
@@ -78,11 +82,20 @@ export class GameServiceService {
     },
   ];
 
+  /**
+   * @returns Un listado con toda la lista de videojuegos
+   */
   public findAll() : Videojuego[]
   {
     return this.listGame;
   }
 
+  /**
+   * 
+   * @param id Id del videojuego a buscar
+   * @returns retorna un objeto de la clase Videojuego cuyo id coicida. 
+   * Rn caso de haberlo en caso contrario devolvera undefined
+   */
   public findById(id: Number) : Videojuego | undefined
   {
     return this.listGame.find(game => game.id === id);

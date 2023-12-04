@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService, private router:Router) { }
 
+  /**
+   * Haciendo uso de AuthenticationService comprueba si el usuario y contraseña son correctos.
+   * En caso de serlos redirigira al usuario al listado de videojuegos.
+   */
   login():void{
     if(this.authService.login(this.username, this.password)){
       console.log("funciona esta vivo")

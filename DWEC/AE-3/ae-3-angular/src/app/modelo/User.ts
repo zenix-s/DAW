@@ -1,3 +1,6 @@
+/**
+ * Clase que determina los atributos del usuario
+ */
 export class User {
   userName: string;
   password: string;

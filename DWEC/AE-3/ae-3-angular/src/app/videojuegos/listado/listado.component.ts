@@ -12,6 +12,9 @@ export class ListadoComponent implements OnInit {
   games: Videojuego[] = [];
   constructor(private _gameService: GameServiceService) {}
 
+  /**
+   * Se hace uso del servicio GameServiceService para conseguir el listado completo de videojuegos
+   */
   ngOnInit(): void {
     this.games = this._gameService.findAll();
   }

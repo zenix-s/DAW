@@ -1,5 +1,19 @@
+<div>
+  <a routerLink="/">Volver</a>
+</div>
 <div *ngIf="game">
-  {{game.titulo}}
+  <div>
+    {{game.id}}
+  </div>
+  <div>
+    {{game.titulo}}
+  </div>
+  <div>
+    {{game.compania}}
+  </div>
+  <div>
+    {{game.valoracionMedia}}
+  </div>
 </div>
 <div *ngIf="!game">
   Juego no encontrado

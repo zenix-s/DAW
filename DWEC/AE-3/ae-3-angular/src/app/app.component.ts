@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './service/authentication.service';
+import { AsideComponent } from './components/aside/aside.component';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,5 @@ import { AuthenticationService } from './service/authentication.service';
 export class AppComponent {
   title = 'ae-3-angular';
 
-  constructor(public authService: AuthenticationService) {}
-  logout(): void {
-    this.authService.logout();
-  }
+  constructor() {}
 }

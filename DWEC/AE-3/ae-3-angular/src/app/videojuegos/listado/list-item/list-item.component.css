@@ -4,6 +4,8 @@
 
 a {
   border: 1px solid #B6BBC475;
+  display: flex;
+  gap: 8px;
   height: min-content;
   width: 100%;
   display: flex;

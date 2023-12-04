@@ -10,6 +10,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { ListItemComponent } from './videojuegos/listado/list-item/list-item.component';
 import { FormsModule } from '@angular/forms';
+import { AsideComponent } from './components/aside/aside.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     ContactoComponent,
     AboutusComponent,
     LoginComponent,
-    ListItemComponent
+    ListItemComponent,
+    AsideComponent
   ],
   imports: [
     BrowserModule,
