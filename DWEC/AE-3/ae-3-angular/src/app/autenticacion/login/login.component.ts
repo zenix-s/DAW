@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   login():void{
     if(this.authService.login(this.username, this.password)){
-
+      console.log("funciona esta vivo")
+    }else{
+      console.log("fuck")
     }
   }
 
