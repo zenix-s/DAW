@@ -68,7 +68,7 @@ En la vista principal tenemos un listado con los videojuegos y nuestro usuario
 
 ![Alt text](image.png)
 
-Tambien tenemos la vista about-us en la cual podemos ver datos del creador
+Tambien tenemos la vista ![about-us](src/app/aboutus) en la cual podemos ver datos del creador
 
 ![Alt text](image-1.png)
 
