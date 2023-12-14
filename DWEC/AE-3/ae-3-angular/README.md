@@ -25,7 +25,7 @@ Independientemente de a donde trate de dirigirse el usuario en caso de no estar 
 
 En caso de intentar loguearse con un usuario y contraseña no validos
 
-![Alt text](image2.png)
+![Alt text](README/image2.png)
 
 En caso de iniciar con un usuario y contraseña validos nos redirigira a `/`
 
