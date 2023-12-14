@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a class="activeNavTab" th:href="@{/cliente}">
+						Clientes
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/comercial}">
+						Comerciales
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/pedido}">
+						Pedidos
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/endidacc}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<h2>Hola</h2>
+	<h1 th:text="${mensaje}"></h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>nombre</th>
+				<th>apellido1</th>
+				<th>apellido2</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cl : ${clientes}">
+				<td th:text="${cl.nombre}"></td>
+				<td th:text="${cl.apellido1}"></td>
+				<td th:text="${cl.apellido2}"></td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+
+</html>

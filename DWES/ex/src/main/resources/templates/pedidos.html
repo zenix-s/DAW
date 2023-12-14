@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a  th:href="@{/cliente}">
+						Clientes
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/comercial}">
+						Comerciales
+					</a>
+				</li>
+				<li>
+					<a class="activeNavTab" th:href="@{/pedido}">
+						Pedidos
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/endidacc}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	Pedidos
+</body>
+</html>
