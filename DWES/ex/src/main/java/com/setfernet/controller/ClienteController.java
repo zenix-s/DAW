@@ -16,10 +16,7 @@ public class ClienteController {
 	
 	@GetMapping({"","/","/home"})
 	public String home(Model model) {
-		System.out.println("hola");
-		System.out.println(cdao.findAll());
 		model.addAttribute("clientes", cdao.findAll());
-		model.addAttribute("mensaje", "esto no esta bien");
 		return ("clientes");
 	}
 }
