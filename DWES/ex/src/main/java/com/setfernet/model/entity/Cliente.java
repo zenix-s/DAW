@@ -26,12 +26,17 @@ public class Cliente {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	public Cliente(int idCliente, String nombre, String apellido1, String apellido2) {
+	private Integer categoria;
+	private String ciudad;
+	public Cliente(int idCliente, String nombre, String apellido1, String apellido2, Integer categoria,
+			String ciudad) {
 		super();
 		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
+		this.categoria = categoria;
+		this.ciudad = ciudad;
 	}
 	public Cliente() {
 		super();
@@ -60,6 +65,18 @@ public class Cliente {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
+	public Integer getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Integer categoria) {
+		this.categoria = categoria;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(idCliente);
@@ -75,7 +92,6 @@ public class Cliente {
 		Cliente other = (Cliente) obj;
 		return idCliente == other.idCliente;
 	}
-
 	
 	
 	

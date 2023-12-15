@@ -33,6 +33,31 @@
 			</ul>
 		</nav>
 	</header>
-	Pedidos
+	<h2>Hola</h2>
+	<h1 th:text="${mensaje}"></h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>fecha</th>
+				<th>total</th>
+				<th>id cliente</th>
+				<th>id comercial</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cl : ${pedidos}">
+				<td th:text="${cl.idPedido}"></td>
+				<td th:text="${#dates.format(cl.fecha, 'dd-MM-yyyy')}"></td>
+				<td th:text="${cl.total}"></td>
+				<td th:text="${cl.cliente.idCliente}"></td>
+				<td th:text="${cl.comercial.idComercial}"></td>
+				<td><a th:href="@{/pedido/eliminar/{id}(id=${cl.idPedido})}">Borrar</a></td>
+				
+			</tr>
+
+		</tbody>
+	</table>
 </body>
 </html>

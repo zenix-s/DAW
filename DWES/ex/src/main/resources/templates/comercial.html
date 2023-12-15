@@ -7,6 +7,57 @@
 	<link th:href="@{/styles/navBar.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-	Comercial
+		<header id="navBar">
+		<nav>
+			<ul>
+				<li>
+					<a  th:href="@{/cliente}">
+						Clientes
+					</a>
+				</li>
+				<li>
+					<a class="activeNavTab" th:href="@{/comercial}">
+						Comerciales
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/pedido}">
+						Pedidos
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/endidacc}">
+						Salir
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<h2>Hola</h2>
+	<h1 th:text="${mensaje}"></h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>nombre</th>
+				<th>apellido1</th>
+				<th>apellido2</th>
+				<th>comision</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cl : ${comerciales}">
+				<td th:text="${cl.idComercial}"></td>
+				<td th:text="${cl.nombre}"></td>
+				<td th:text="${cl.apellido1}"></td>
+				<td th:text="${cl.apellido2}"></td>
+				<td th:text="${cl.comision}"></td>
+				<td><a th:href="@{/comercial/eliminar/{id}(id=${cl.idComercial})}">Borrar</a></td>
+				
+			</tr>
+
+		</tbody>
+	</table>
 </body>
 </html>

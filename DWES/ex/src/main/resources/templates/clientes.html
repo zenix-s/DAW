@@ -44,6 +44,9 @@
 				<th>nombre</th>
 				<th>apellido1</th>
 				<th>apellido2</th>
+				<th>categoria</th>
+				<th>ciudad</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,6 +55,10 @@
 				<td th:text="${cl.nombre}"></td>
 				<td th:text="${cl.apellido1}"></td>
 				<td th:text="${cl.apellido2}"></td>
+				<td th:text="${cl.categoria}"></td>
+				<td th:text="${cl.ciudad}"></td>
+				<td><a th:href="@{/cliente/eliminar/{id}(id=${cl.idCliente})}">Borrar</a></td>
+				
 			</tr>
 
 		</tbody>

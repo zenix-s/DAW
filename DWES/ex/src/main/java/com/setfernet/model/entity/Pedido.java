@@ -1,6 +1,7 @@
 package com.setfernet.model.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,5 +31,63 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name="id_comercial")
 	private Comercial comercial;
+	public Pedido(int idPedido, Date fecha, double total, Cliente cliente, Comercial comercial) {
+		super();
+		this.idPedido = idPedido;
+		this.fecha = fecha;
+		this.total = total;
+		this.cliente = cliente;
+		this.comercial = comercial;
+	}
+	public Pedido() {
+		super();
+	}
+	public int getIdPedido() {
+		return idPedido;
+	}
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Comercial getComercial() {
+		return comercial;
+	}
+	public void setComercial(Comercial comercial) {
+		this.comercial = comercial;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(idPedido);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pedido other = (Pedido) obj;
+		return idPedido == other.idPedido;
+	}
+	
+	
 
 }
