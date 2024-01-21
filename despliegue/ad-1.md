@@ -1,3 +1,8 @@
+# AD-1. Comandos 
+
+Para resolver y probar los comandos, se ha utilizado un wsl con Debian 12.
+Para poder usar los comandos, se ha creado un usuario llamado `serferna` con permisos de sudo.
+
 ## 1. ¿Cómo sabemos si tenemos conexión a internet?
 Para saber si tenemos conexión a internet, se puede usar el comando `ping`.
 Este comando envía paquetes a una dirección web y recibe una respuesta. Si se recibe una respuesta, significa que tenemos conexión a internet.
@@ -63,7 +68,7 @@ Para ello, se requiere tener instalado el paquete `dnsutils`.
 
 ```bash
 # Se usa el comando nslookup seguido de la dirección web
-$ nslookup www.google.com
+$serferna nslookup www.google.com
 Server:         172.25.64.1 # El servidor es el DNS de la dirección web
 Address:        172.25.64.1#53 # 53 es el puerto por defecto del DNS
 
@@ -74,7 +79,7 @@ Address: 142.250.200.132 # Dirección IP de la dirección web
 
 Usar el comando `dig` también permite saber a quién pertenece una dirección web.
 ```bash
-$ dig www.google.com
+$serferna dig www.google.com
 
 ; <<>> DiG 9.18.19-1~deb12u1-Debian <<>> www.google.com # Versión de dig
 ;; global options: +cmd # Opciones globales
@@ -133,3 +138,7 @@ No se han necesitado más comandos, pero si se ha necesitado instalar los paquet
 - `dnsutils` : Para usar el comando `nslookup` y `dig`
 - `curl` : Para usar el comando `curl`
 - `wget` : Para usar el comando `wget`
+
+```bash
+$serferna sudo apt install net-tools dnsutils curl wget
+```
