@@ -1,19 +1,3 @@
-La administración de un servidor web y/o un servidor de aplicaciones requiere unos conocimientos básicos de comandos de consola que permite visualizar qué está pasando en nuestro servidor. Se pide practicar y crear una guía de uso para las siguientes problemáticas que nos podemos encontrar:
-
-  1. ¿Cómo sabemos si tenemos conexión a internet? Pista: ifconfig, ping
-  2. ¿Cómo sabemos si nuestro servidor es accesible desde Internet? Pista: ufw, netstat
-  3. ¿Cómo sabemos a quién pertenece una dirección web (URL)? Pista: dig, nslookup
-  4. ¿Cómo probamos que podemos acceder a un servidor? Pista: curl, wget
-  5. ¿Qué otros comandos te han hecho falta?
-
-Consideraciones
-
-Para toda la actividad se valorará el orden y la claridad de la documentación, así como la facilidad de uso.
-
-Para la entrega, es necesaria la creación y subida a la plataforma de un pequeño documento formal sobre la actividad (portada, explicación, etc.) y una guía “how-to” que describa y permita resolver las preguntas planteadas en la actividad.
-
-Nótese que más adelante se pedirá que se realicen tareas con un repositorio GIT que contenga la documentación de esta actividad.
-
 ## 1. ¿Cómo sabemos si tenemos conexión a internet?
 Para saber si tenemos conexión a internet, se puede usar el comando `ping`.
 Este comando envía paquetes a una dirección web y recibe una respuesta. Si se recibe una respuesta, significa que tenemos conexión a internet.
@@ -143,3 +127,9 @@ nvim.appimage
 ```
 
 ## 5. ¿Qué otros comandos te han hecho falta?
+
+No se han necesitado más comandos, pero si se ha necesitado instalar los paquetes
+- `net-tools` : Para usar el comando `ifconfig`
+- `dnsutils` : Para usar el comando `nslookup` y `dig`
+- `curl` : Para usar el comando `curl`
+- `wget` : Para usar el comando `wget`
