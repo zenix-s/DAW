@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/styles/header.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header id="header">
+		<div>
+			<a th:href="@{/}">github.com/zenix-s</a>
+		</div>
+		<div class="navbar w-full px-10">
+			<nav>
+				<ul class="flex flex-around">
+					<li>
+						<span>Eventos</span>
+					</li>
+					<li>
+						<a th:href="@{/eventos/destacados}">Destacados</a>
+					</li>
+					<li>
+						<a th:href="@{/eventos/activos}">Activos</a>
+					</li>
+					<li>
+						<select>
+							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
+						</select>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/misReservas}">Mis Reservas</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="user-options">
+			<div sec:authorize="!isAuthenticated()" class="flex gap-10">
+				<a th:href="@{/login}">Login</a>
+				<a th:href="@{/registro}">Register</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<div>
+					<span>Bienvenido, </span>
+					<span>
+						<span sec:authentication="name"></span>
+					</span>
+				</div>
+				<div>
+					<a th:href="@{/logout}">Cerrar sesión</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Aforo</th>
+					<th>Fecha Inicio</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.nombre}"></td>
+					<td th:text="${evento.aforoMaximo}"></td>
+					<td th:text="${evento.fechaInicio}"></td>
+					<td>
+						<a class="button" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver</a>
+					</td>
+				</tr>
+		</table>
+	</main>
+</body>
+
+</html>

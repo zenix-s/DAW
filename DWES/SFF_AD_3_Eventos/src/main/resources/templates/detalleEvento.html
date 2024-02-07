@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/styles/header.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header id="header">
+		<div>
+			<a th:href="@{/}">Logo</a>
+		</div>
+		<div class="events-filters">
+			<ul>
+				<li>
+					<span>Eventos</span>
+				</li>
+				<li>
+					<div>
+						<a th:href="@{/eventos/destacados}">Destacados</a>
+					</div>
+					<div>
+						<a th:href="@{/eventos/activos}">Activos</a>
+					</div>
+				</li>
+				<li>
+					<select>
+						<option value="0" disabled>Tipo de evento</option>
+						<option value="1">Conciertos</option>
+						<option value="2">Teatro</option>
+						<option value="3">Deportes</option>
+						<option value="4">Festivales</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li>
+						<a href="">Mis Reservas</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="user-options">
+			<div sec:authorize="!isAuthenticated()">
+				<a href="">Login</a>
+				<a href="">Register</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<div>
+					<span>Bienvenido, </span>
+					<span>Nombre</span>
+				</div>
+				<div>
+					<a href="">Cerrar sesión</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div>
+			<h1>Evento</h1>
+			<div>
+				<h2>
+					<span>
+						Nombre del evento
+					</span>
+					<span th:text="${evento.nombre}"></span>
+				</h2>
+				<p>
+					<span>Descripción del evento</span>
+					<span th:text="${evento.descripcion}"></span>
+				</p>
+				<p>
+					<span>Fecha de inicio</span>
+					<span th:text="${evento.fechaInicio}"></span>
+				</p>
+				<p>
+					<span>Duracion</span>
+					<span th:text="${evento.duracion}"></span>
+				</p>
+				<p>
+					<span>Dirección</span>
+					<span th:text="${evento.direccion}"></span>
+				</p>
+				<p>
+					<span>Aforo máximo</span>
+					<span th:text="${evento.aforoMaximo}"></span>
+				</p>
+				<p>
+					<span>Precio</span>
+					<span th:text="${evento.precio}"></span>
+				</p>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>

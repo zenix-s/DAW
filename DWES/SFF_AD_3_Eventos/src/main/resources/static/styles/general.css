@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="submit"],
+textarea,
+select {
+	width: 100%;
+}
+.buttonContainer{
+	padding: 20px 0px;	
+}
+.button{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	border: 1px solid black;
+	text-decoration: none;
+	justify-content: center;
+}
+body {
+	padding: 15px;
+	gap: 5px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+main {
+	flex-grow: 1;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+	width: 100%;
+	overflow-x: auto;
+	border-collapse: collapse;
+}
+
+thead {
+	background-color: #818ab1;
+	color: white;
+}
+
+td,
+th {
+	border: 2px solid #818ab1;
+	text-align: center;
+	padding: 5px 10px;
+}
+
+.detailsButton {
+	color: goldenrod
+}
+
+.editButton {
+	color: black;
+}
+
+.deleteButton {
+	color: darkorange;
+}
+
+.cancelButton {
+	color: red;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-between {
+	justify-content: space-between;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.flex-around {
+	justify-content: space-around;
+}
+
+.gap-10 {
+	gap: 10px;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+.w-full {
+	width: 100%;
+}
+
+.px-10 {
+	padding: 0 10px;
+}

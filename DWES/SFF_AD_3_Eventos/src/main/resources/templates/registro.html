@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/styles/header.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header id="header">
+		<div>
+			<a th:href="@{/}">github.com/zenix-s</a>
+		</div>
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li>
+						<a href="">Mis Reservas</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="user-options">
+			<div sec:authorize="!isAuthenticated()">
+				<a th:href="@{/login}">Login</a>
+				<a th:href="@{/registro}">Register</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<div>
+					<span>Bienvenido, </span>
+					<span>Nombre</span>
+				</div>
+				<div>
+					<a href="">Cerrar sesión</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<h1>Registro Usuario</h1>
+		<form th:action="@{/registro}" method="post" th:object="${usuario}">
+			<!-- username passoword nombre apellidos direccion -->
+			<div>
+				<label for="username">Username</label>
+				<input type="text" id="username" th:field="*{username}" placeholder="Username" />
+			</div>
+			<div>
+				<label for="password">Password</label>
+				<input type="text" id="password" th:field="*{password}" placeholder="Password" />
+			</div>
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" id="nombre" th:field="*{nombre}" placeholder="Nombre" />
+			</div>
+			<div>
+				<label for="apellidos">Apellidos</label>
+				<input type="text" id="apellidos" th:field="*{apellidos}" placeholder="Apellidos" />
+			</div>
+			<div>
+				<label for="direccion">Direccion</label>
+				<input type="text" id="direccion" th:field="*{direccion}" placeholder="Direccion" />
+			</div>
+			<div>
+				<button type="submit">Registrar</button>
+			</div>
+		</form>
+	</main>
+</body>
+
+</html>

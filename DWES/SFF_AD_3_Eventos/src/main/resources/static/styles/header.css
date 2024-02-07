@@ -1,0 +1,19 @@
+#header {
+	width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #818ab1;
+  color: white;
+}
+
+#header > .events-filter {
+	display: flex;
+	align-items: center;
+}
+
+#header > .user-options {
+	display: flex;
+	align-items: center;
+}	
