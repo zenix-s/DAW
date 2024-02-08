@@ -7,13 +7,16 @@ import zenixs.eventos.model.entity.Usuario;
 import zenixs.eventos.model.repository.UsuarioRepository;
 
 @Repository
-public class ImplementUsuarioDao implements UsuarioDao{
+public class ImplementUsuarioDao implements UsuarioDao {
 
 	@Autowired
 	private UsuarioRepository usuarioRep;
 
 	@Override
 	public Usuario registerUsuario(Usuario usuario) {
+
+		if (usuario == null)
+			return null;
 		try {
 			return usuarioRep.save(usuario);
 		} catch (Exception e) {
@@ -24,7 +27,10 @@ public class ImplementUsuarioDao implements UsuarioDao{
 
 	@Override
 	public Usuario findUsuarioById(String idUsuario) {
+
+		if (idUsuario == null)
+			return null;
 		return usuarioRep.findById(idUsuario).orElse(null);
 	}
-	
+
 }

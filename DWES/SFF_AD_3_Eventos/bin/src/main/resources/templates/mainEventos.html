@@ -55,59 +55,25 @@
 		</div>
 	</header>
 	<main>
-		<div>
-			<h1>Evento</h1>
-			<div>
-				<h2>
-					<span>
-						Nombre del evento
-					</span>
-					<span th:text="${evento.nombre}"></span>
-				</h2>
-				<p>
-					<span>Descripción del evento</span>
-					<span th:text="${evento.descripcion}"></span>
-				</p>
-				<p>
-					<span>Fecha de inicio</span>
-					<span th:text="${evento.fechaInicio}"></span>
-				</p>
-				<p>
-					<span>Duracion</span>
-					<span th:text="${evento.duracion}"></span>
-				</p>
-				<p>
-					<span>Dirección</span>
-					<span th:text="${evento.direccion}"></span>
-				</p>
-				<p>
-					<span>Aforo máximo</span>
-					<span th:text="${evento.aforoMaximo}"></span>
-					<span>minimoAsistencia</span>
-					<span th:text="${evento.minimoAsistencia}"></span>
-				</p>
-				<p>
-					<span>Precio</span>
-					<span th:text="${evento.precio}"></span>
-				</p>
-				<p>
-					<span>Estado</span>
-					<span th:text="${evento.estado}"></span>
-				</p>
-				<p>
-					<span>Tipo</span>
-					<span th:text="${evento.tipo.nombre}"></span>
-				</p>
-			</div>
-			<div id="reservar">
-				<form th:action="@{/reservar/evento.idEvento}" method="post">
-					<input type="hidden" name="idEvento" th:value="${evento.idEvento}" />
-					<!-- <input type="hidden" name="idUsuario" th:value="${#authentication.principal.idUsuario}" /> -->
-					<input type="number" name="numAsistentes" min="1" max="10" />
-					<input type="submit" value="Reservar" />
-				</form>
-			</div>
-		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Aforo</th>
+					<th>Fecha Inicio</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.nombre}"></td>
+					<td th:text="${evento.aforoMaximo}"></td>
+					<td th:text="${evento.fechaInicio}"></td>
+					<td>
+						<a class="button" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver</a>
+					</td>
+				</tr>
+		</table>
 	</main>
 </body>
 
