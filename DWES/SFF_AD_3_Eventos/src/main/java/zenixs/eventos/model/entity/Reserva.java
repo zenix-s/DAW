@@ -1,4 +1,4 @@
-package zenixs.eventos.model.entity;
+ package zenixs.eventos.model.entity;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table(name="reservas")
+@Table(name="RESERVAS")
 @NamedQuery(name="Reserva.findAll", query="SELECT r FROM Reserva r")
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;

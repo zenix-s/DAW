@@ -20,6 +20,7 @@ input[type="submit"],
 textarea,
 select {
 	width: 100%;
+	background-color: transparent ;
 }
 .buttonContainer{
 	padding: 20px 0px;	
@@ -33,7 +34,7 @@ select {
 	border: 2px solid #505983;
 	text-decoration: none;
 	justify-content: center;
-	color: #d1d4e0;
+	color: #dadce2;
 	transition: all 0.3s ease;
 }
 
