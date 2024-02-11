@@ -36,22 +36,38 @@ public class HomeController {
 	@Autowired
 	private TipoDao tdao;
 
+	/**
+	 * Listar todos los eventos con atributo destacado y activo
+	 * @param model
+	 * @return mainEventos.html
+	 */
 	@GetMapping("/")
 	public String index(Model model) {
 		
 		model.addAttribute("eventos", edao.findAllMainEvento());
 		model.addAttribute("tipos", tdao.findAllTipo());
-		System.out.println("Eventos: " + edao.findAllMainEvento());
-		
+
 		return "mainEventos";
 	}
 
+	/**
+	 * Registro de usuario
+	 * @param model
+	 * @return registro.html
+	 */
 	@GetMapping("/registro")
 	public String signup(Model model) {
 		model.addAttribute("usuario", new Usuario());
 		return "registro";
 	}
 
+	/**
+	 * Recive petición de registro de usuario y la procesa
+	 * @param usuario usuario a registrar
+	 * @param model
+	 * @param ratt 
+	 * @return html
+	 */
 	@PostMapping("/registro")
 	public String signupProcess(Usuario usuario, Model model, RedirectAttributes ratt) {
 
@@ -72,6 +88,7 @@ public class HomeController {
 		
 	}
 
+	
 	@GetMapping("/index")
 	public String procesarLogin(Authentication aut, Model model, HttpSession misesion) {
 		

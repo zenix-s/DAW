@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/styles/header.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header class="w-full flex gap-30 flex-between bg p-20">
+		<div class="flex-item-center flex h-full">
+			<a th:href="@{/}">github.com/zenix-s</a>
+		</div>
+		<div class="flex flex-grow flex-item-center gap-10">
+			<h2>Eventos</h2>
+			<nav class="w-full">
+				<ul class="flex h-full flex-item-center gap-10 w-full">
+					<li class="flex flex-column">
+						<a class="button" th:href="@{/eventos/destacados}">Destacados</a>
+						<a class="button" th:href="@{/eventos/activos}">Activos</a>
+					</li>
+					<li>
+						<select class="button" id="typeFilter">
+							<option value="0">Todos</option>
+							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
+						</select>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a class="button" th:href="@{/eventos/misReservas}">Mis Reservas</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="flex h-full flex-item-center">
+			<div sec:authorize="!isAuthenticated()" class="flex gap-10">
+				<a th:href="@{/login}">Login</a>
+				<a th:href="@{/registro}">Register</a>
+			</div>
+			<div class="flex h-full flex-item-center gap-10" sec:authorize="isAuthenticated()">
+				<div>
+					<span>Bienvenido, </span>
+					<span sec:authentication="name"></span>
+				</div>
+				<div>
+					<a class="button" th:href="@{/logout}">Cerrar sesión</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section id="toaster" class="flex flex-column">
+
+		<div id="succes-message" class="bg-green" th:classappend="${successMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${successMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer"
+				onclick="document.getElementById('succes-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+		<div id="error-message" class="bg-red" th:classappend="${errorMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${errorMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer"
+				onclick="document.getElementById('error-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+	</section>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Fecha Inicio</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody id="reservas-list-body">
+				<tr th:each="reservas : ${reservas}">
+					<td class="hidden" th:text="${reservas.evento.tipo.idTipo}"></td>
+					<td th:text="${reservas.evento.nombre}"></td>
+					<td th:text="${reservas.evento.fechaInicio}"></td>
+					<td th:text="${reservas.evento.precio}"></td>
+					<td th:text="${reservas.cantidad}"></td>
+					<td>
+						<a class="button color-black" th:href="@{/eventos/cancelar/{id}(id=${reservas.idReserva})}">Cancelar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+	<script>
+		const typeFilter = document.getElementById('typeFilter');
+		
+
+		typeFilter.addEventListener('change', (e) => {
+			const selectedType = e.target.value;
+			const reservas = document.querySelectorAll('#reservas-list-body tr');
+			reservas.forEach(reserva => {
+				const tipo = reserva.querySelector('td').textContent;
+				if (selectedType === '0' || tipo === selectedType) {
+					reserva.style.display = 'table-row';
+				} else {
+					reserva.style.display = 'none';
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

@@ -9,51 +9,57 @@
 </head>
 
 <body>
-	<header id="header">
-		<div>
+	<header class="w-full flex gap-30 flex-between bg p-20">
+		<div class="flex-item-center flex h-full">
 			<a th:href="@{/}">github.com/zenix-s</a>
 		</div>
-		<div class="navbar w-full px-10">
-			<nav>
-				<ul class="flex flex-around">
-					<li>
-						<span>Eventos</span>
-					</li>
-					<li>
-						<a th:href="@{/eventos/destacados}">Destacados</a>
-					</li>
-					<li>
-						<a th:href="@{/eventos/activos}">Activos</a>
-					</li>
-					<li>
-						<select>
-							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
-						</select>
+		<div class="flex flex-grow flex-item-center gap-10">
+			<h2>Eventos</h2>
+			<nav class="w-full">
+				<ul class="flex h-full flex-item-center gap-10 w-full">
+					<li class="flex flex-column">
+						<a class="button" th:href="@{/eventos/destacados}">Destacados</a>
+						<a class="button" th:href="@{/eventos/activos}">Activos</a>
 					</li>
 					<li sec:authorize="isAuthenticated()">
-						<a th:href="@{/misReservas}">Mis Reservas</a>
+						<a class="button" th:href="@{/eventos/misReservas}">Mis Reservas</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
-		<div class="user-options">
+		<div class="flex h-full flex-item-center">
 			<div sec:authorize="!isAuthenticated()" class="flex gap-10">
 				<a th:href="@{/login}">Login</a>
 				<a th:href="@{/registro}">Register</a>
 			</div>
-			<div sec:authorize="isAuthenticated()">
+			<div class="flex h-full flex-item-center gap-10" sec:authorize="isAuthenticated()">
 				<div>
 					<span>Bienvenido, </span>
-					<span>
-						<span sec:authentication="name"></span>
-					</span>
+					<span sec:authentication="name"></span>
 				</div>
 				<div>
-					<a th:href="@{/logout}">Cerrar sesión</a>
+					<a class="button" th:href="@{/logout}">Cerrar sesión</a>
 				</div>
 			</div>
 		</div>
 	</header>
+	<section id="toaster" class="flex flex-column">
+		
+		<div id="succes-message" class="bg-green" th:classappend="${successMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${successMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer" onclick="document.getElementById('succes-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+		<div id="error-message" class="bg-red" th:classappend="${errorMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${errorMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer" onclick="document.getElementById('error-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+	</section>
 	<main>
 		<div>
 			<h1>Evento</h1>
@@ -64,47 +70,50 @@
 					</span>
 					<span th:text="${evento.nombre}"></span>
 				</h2>
-				<p>
-					<span>Descripción del evento</span>
+				<p class="flex flex-column">
+					<span class="bold">Descripción del evento</span>
 					<span th:text="${evento.descripcion}"></span>
 				</p>
-				<p>
-					<span>Fecha de inicio</span>
+				<p class="flex flex-column">
+					<span class="bold">Fecha de inicio</span>
 					<span th:text="${evento.fechaInicio}"></span>
 				</p>
-				<p>
-					<span>Duracion</span>
-					<span th:text="${evento.duracion}"></span>
+				<p class="flex flex-column">
+					<span class="bold">Duracion</span>
+					<span th:text="${evento.duracion} + ' horas'"></span>
 				</p>
-				<p>
-					<span>Dirección</span>
+				<p class="flex flex-column">
+					<span class="bold">Dirección</span>
 					<span th:text="${evento.direccion}"></span>
 				</p>
-				<p>
-					<span>Aforo máximo</span>
+				<p class="flex flex-column">
+					<span class="bold">Aforo máximo</span>
 					<span th:text="${evento.aforoMaximo}"></span>
-					<span>minimoAsistencia</span>
+					<span class="bold">Minimo Asistencia</span>
 					<span th:text="${evento.minimoAsistencia}"></span>
+					<span class="bold">Cantidad Reservada</span>
+					<span th:text="${cantidadReservada}"></span>
+					<span class="bold">Reservas Restantes</span>
+					<span th:text="${evento.aforoMaximo - cantidadReservada}"></span>
 				</p>
-				<p>
-					<span>Precio</span>
+				<p class="flex flex-column">
+					<span class="bold">Precio</span>
 					<span th:text="${evento.precio}"></span>
 				</p>
-				<p>
-					<span>Estado</span>
+				<p class="flex flex-column">
+					<span class="bold">Estado</span>
 					<span th:text="${evento.estado}"></span>
 				</p>
-				<p>
-					<span>Tipo</span>
+				<p class="flex flex-column">
+					<span class="bold">Tipo</span>
 					<span th:text="${evento.tipo.nombre}"></span>
 				</p>
 			</div>
-			<div id="reservar">
-				<form th:action="@{/reservar/evento.idEvento}" method="post">
-					<input type="hidden" name="idEvento" th:value="${evento.idEvento}" />
-					<!-- <input type="hidden" name="idUsuario" th:value="${#authentication.principal.idUsuario}" /> -->
-					<input type="number" name="numAsistentes" min="1" max="10" />
-					<input type="submit" value="Reservar" />
+			<div id="reservar" sec:authorize="isAuthenticated()">
+				<h2>Reservar</h2>
+				<form th:action="@{/eventos/reservar/{idEvento}(idEvento=${evento.idEvento})}" method="post">
+					<input class="p-10 rounded-10 border-2-black" type="number" name="cantidad" min="1" max="10" value="1">
+					<input class="button color-black" type="submit" value="Reservar">
 				</form>
 			</div>
 		</div>

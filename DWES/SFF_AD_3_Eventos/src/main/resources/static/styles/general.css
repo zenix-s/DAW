@@ -86,6 +86,23 @@ th {
 	background-color: #818ab1;
 }
 
+.bg-green{
+	background-color: #4CAF50;
+}
+
+.bg-red{
+	background-color: #f44336;
+
+}
+
+.bg-transparent{
+	background-color: transparent;
+}
+
+.hidden{
+	display: none;
+}
+
 .flex {
 	display: flex;
 }
@@ -145,4 +162,28 @@ th {
 
 .px-10 {
 	padding: 0 10px;
+}
+
+.color-black {
+	color: black;
+}
+
+.border-1-black {
+	border: 1px solid black;
+}
+
+.border-2-black {
+	border: 2px solid black;
+}
+
+.rounded-10{
+	border-radius: 10px;
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+
+.bold {
+	font-weight: bold;
 }

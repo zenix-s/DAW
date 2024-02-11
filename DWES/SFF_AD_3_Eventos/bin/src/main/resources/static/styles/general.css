@@ -20,6 +20,7 @@ input[type="submit"],
 textarea,
 select {
 	width: 100%;
+	background-color: transparent ;
 }
 .buttonContainer{
 	padding: 20px 0px;	
@@ -27,11 +28,21 @@ select {
 .button{
 	height: 100%;
 	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
 	display: flex;
-	border: 1px solid black;
+	border: 2px solid #505983;
 	text-decoration: none;
 	justify-content: center;
+	color: #dadce2;
+	transition: all 0.3s ease;
 }
+
+.button:hover{
+	background-color: #505983;
+	color: white;
+}
+
 body {
 	padding: 15px;
 	gap: 5px;
@@ -49,6 +60,8 @@ ul {
 
 a {
 	text-decoration: none;
+	height: min-content;
+	color: black;
 }
 
 table {
@@ -69,20 +82,8 @@ th {
 	padding: 5px 10px;
 }
 
-.detailsButton {
-	color: goldenrod
-}
-
-.editButton {
-	color: black;
-}
-
-.deleteButton {
-	color: darkorange;
-}
-
-.cancelButton {
-	color: red;
+.bg{
+	background-color: #818ab1;
 }
 
 .flex {
@@ -105,8 +106,21 @@ th {
 	justify-content: space-around;
 }
 
+.flex-item-center {
+	align-items: center;
+}
+
+
 .gap-10 {
 	gap: 10px;
+}
+
+.gap-20 {
+	gap: 20px;
+}
+
+.gap-30 {
+	gap: 30px;
 }
 
 .flex-grow {
@@ -115,6 +129,18 @@ th {
 
 .w-full {
 	width: 100%;
+}
+
+.h-full {
+	height: 100%;
+}
+
+.p-10{
+	padding: 10px;
+}
+
+.p-20{
+	padding: 20px;
 }
 
 .px-10 {

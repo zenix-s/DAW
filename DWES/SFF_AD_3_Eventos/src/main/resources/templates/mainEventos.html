@@ -13,23 +13,22 @@
 		<div class="flex-item-center flex h-full">
 			<a th:href="@{/}">github.com/zenix-s</a>
 		</div>
-		<div class="flex flex-grow">
+		<div class="flex flex-grow flex-item-center gap-10">
+			<h2>Eventos</h2>
 			<nav class="w-full">
 				<ul class="flex h-full flex-item-center gap-10 w-full">
-					<li>
-						<span>Eventos</span>
-					</li>
 					<li class="flex flex-column">
 						<a class="button" th:href="@{/eventos/destacados}">Destacados</a>
 						<a class="button" th:href="@{/eventos/activos}">Activos</a>
 					</li>
 					<li>
-						<select class="button">
+						<select class="button" id="typeFilter">
+							<option value="0">Todos</option>
 							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
 						</select>
 					</li>
 					<li sec:authorize="isAuthenticated()">
-						<a class="button" th:href="@{/misReservas}">Mis Reservas</a>
+						<a class="button" th:href="@{/eventos/misReservas}">Mis Reservas</a>
 					</li>
 				</ul>
 			</nav>
@@ -50,8 +49,27 @@
 			</div>
 		</div>
 	</header>
+	<section id="toaster" class="flex flex-column">
+		
+		<!-- always show message -->
+
+		<div id="succes-message" class="bg-green" th:classappend="${successMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${successMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer" onclick="document.getElementById('succes-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+		<div id="error-message" class="bg-red" th:classappend="${errorMessage != null ? 'flex' : 'hidden'}">
+			<span id="message" class="flex-grow" th:text="${errorMessage}"></span>
+			<button class="p-10 bg-transparent border-2-black cursor-pointer"  onclick="document.getElementById('error-message').style.display = 'none'">
+				X
+			</button>
+		</div>
+
+	</section>
 	<main>
-		<table>
+		<table id="eventos">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -60,17 +78,40 @@
 					<th>Opciones</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="eventos-table-body">
 				<tr th:each="evento : ${eventos}">
+					<td class="hidden" th:text="${evento.tipo.idTipo}"></td>
 					<td th:text="${evento.nombre}"></td>
 					<td th:text="${evento.aforoMaximo}"></td>
 					<td th:text="${evento.fechaInicio}"></td>
 					<td>
-						<a class="button" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver Detalle</a>
+						<a class="button color-black" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver Detalle</a>
 					</td>
 				</tr>
 		</table>
 	</main>
+	<script>
+		const typeFilter = document.getElementById('typeFilter');
+		const eventosTableBody = document.getElementById('eventos-table-body');
+
+		typeFilter.addEventListener('change', (e) => {
+			const selectedType = e.target.value;
+			const eventos = document.querySelectorAll('#eventos tbody tr');
+			eventos.forEach(evento => {
+				const tipo = evento.querySelector('td').textContent;
+				if (tipo !== selectedType && selectedType !== '0') {
+					evento.style.display = 'none';
+				} else {
+					evento.style.display = 'table-row';
+				}
+			});
+		});
+
+
+
+
+		
+	</script>
 </body>
 
 </html>

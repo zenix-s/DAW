@@ -9,9 +9,17 @@ import zenixs.eventos.model.entity.Reserva;
 public interface ReservaRepository extends JpaRepository<Reserva, Integer>{
 	
 	@Query("SELECT r FROM Reserva r WHERE r.evento.idEvento = ?1")
-	List<Reserva> findByIdEvento(Integer idEvento);
+	List<Reserva> findAllByIdEvento(Integer idEvento);
 
-	// int sum of cantidad from Reserva where idEvento = ?1
+	@Query("SELECT r FROM Reserva r WHERE r.usuario.username = ?1")
+	List<Reserva> findAllByIdUsuario(String idUsuario);
+
+	@Query("SELECT r FROM Reserva r WHERE r.usuario.username = ?1 AND r.evento.fechaInicio > CURRENT_DATE")
+	List<Reserva> findAllReservaByIdUsuarioAndCurrentDate(String idUsuario);
+
 	@Query("SELECT SUM(r.cantidad) FROM Reserva r WHERE r.evento.idEvento = ?1")
 	Integer sumCantidadByIdEvento(Integer idEvento);
+
+	@Query("SELECT SUM(r.cantidad) FROM Reserva r WHERE r.evento.idEvento = ?1 AND r.usuario.username = ?2")
+	Integer sumCantidadByIdEventoAndIdUsuario(Integer idEvento, String idUsuario);
 }

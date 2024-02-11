@@ -11,53 +11,45 @@
 <body>
 	<header id="header">
 		<div>
-			<a th:href="@{/}">Logo</a>
+			<a th:href="@{/}">github.com/zenix-s</a>
 		</div>
-		<div class="events-filters">
-			<ul>
-				<li>
-					<span>Eventos</span>
-				</li>
-				<li>
-					<div>
-						<a th:href="@{/eventos/destacados}">Destacados</a>
-					</div>
-					<div>
-						<a th:href="@{/eventos/activos}">Activos</a>
-					</div>
-				</li>
-				<li>
-					<select>
-						<option value="0" disabled>Tipo de evento</option>
-						<option value="1">Conciertos</option>
-						<option value="2">Teatro</option>
-						<option value="3">Deportes</option>
-						<option value="4">Festivales</option>
-					</select>
-				</li>
-			</ul>
-		</div>
-		<div class="navbar">
+		<div class="navbar w-full px-10">
 			<nav>
-				<ul>
+				<ul class="flex flex-around">
 					<li>
-						<a href="">Mis Reservas</a>
+						<span>Eventos</span>
+					</li>
+					<li>
+						<a th:href="@{/eventos/destacados}">Destacados</a>
+					</li>
+					<li>
+						<a th:href="@{/eventos/activos}">Activos</a>
+					</li>
+					<li>
+						<select>
+							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
+						</select>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/misReservas}">Mis Reservas</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 		<div class="user-options">
-			<div sec:authorize="!isAuthenticated()">
-				<a href="">Login</a>
-				<a href="">Register</a>
+			<div sec:authorize="!isAuthenticated()" class="flex gap-10">
+				<a th:href="@{/login}">Login</a>
+				<a th:href="@{/registro}">Register</a>
 			</div>
 			<div sec:authorize="isAuthenticated()">
 				<div>
 					<span>Bienvenido, </span>
-					<span>Nombre</span>
+					<span>
+						<span sec:authentication="name"></span>
+					</span>
 				</div>
 				<div>
-					<a href="">Cerrar sesión</a>
+					<a th:href="@{/logout}">Cerrar sesión</a>
 				</div>
 			</div>
 		</div>
@@ -91,11 +83,29 @@
 				<p>
 					<span>Aforo máximo</span>
 					<span th:text="${evento.aforoMaximo}"></span>
+					<span>minimoAsistencia</span>
+					<span th:text="${evento.minimoAsistencia}"></span>
 				</p>
 				<p>
 					<span>Precio</span>
 					<span th:text="${evento.precio}"></span>
 				</p>
+				<p>
+					<span>Estado</span>
+					<span th:text="${evento.estado}"></span>
+				</p>
+				<p>
+					<span>Tipo</span>
+					<span th:text="${evento.tipo.nombre}"></span>
+				</p>
+			</div>
+			<div id="reservar">
+				<form th:action="@{/reservar/evento.idEvento}" method="post">
+					<input type="hidden" name="idEvento" th:value="${evento.idEvento}" />
+					<!-- <input type="hidden" name="idUsuario" th:value="${#authentication.principal.idUsuario}" /> -->
+					<input type="number" name="numAsistentes" min="1" max="10" />
+					<input type="submit" value="Reservar" />
+				</form>
 			</div>
 		</div>
 	</main>

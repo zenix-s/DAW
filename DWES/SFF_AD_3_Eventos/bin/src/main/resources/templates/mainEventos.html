@@ -9,47 +9,43 @@
 </head>
 
 <body>
-	<header id="header">
-		<div>
+	<header class="w-full flex gap-30 flex-between bg p-20">
+		<div class="flex-item-center flex h-full">
 			<a th:href="@{/}">github.com/zenix-s</a>
 		</div>
-		<div class="navbar w-full px-10">
-			<nav>
-				<ul class="flex flex-around">
+		<div class="flex flex-grow">
+			<nav class="w-full">
+				<ul class="flex h-full flex-item-center gap-10 w-full">
 					<li>
 						<span>Eventos</span>
 					</li>
-					<li>
-						<a th:href="@{/eventos/destacados}">Destacados</a>
+					<li class="flex flex-column">
+						<a class="button" th:href="@{/eventos/destacados}">Destacados</a>
+						<a class="button" th:href="@{/eventos/activos}">Activos</a>
 					</li>
 					<li>
-						<a th:href="@{/eventos/activos}">Activos</a>
-					</li>
-					<li>
-						<select>
+						<select class="button">
 							<option th:each="tipo : ${tipos}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}"></option>
 						</select>
 					</li>
 					<li sec:authorize="isAuthenticated()">
-						<a th:href="@{/misReservas}">Mis Reservas</a>
+						<a class="button" th:href="@{/misReservas}">Mis Reservas</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
-		<div class="user-options">
+		<div class="flex h-full flex-item-center">
 			<div sec:authorize="!isAuthenticated()" class="flex gap-10">
 				<a th:href="@{/login}">Login</a>
 				<a th:href="@{/registro}">Register</a>
 			</div>
-			<div sec:authorize="isAuthenticated()">
+			<div class="flex h-full flex-item-center gap-10" sec:authorize="isAuthenticated()">
 				<div>
 					<span>Bienvenido, </span>
-					<span>
-						<span sec:authentication="name"></span>
-					</span>
+					<span sec:authentication="name"></span>
 				</div>
 				<div>
-					<a th:href="@{/logout}">Cerrar sesión</a>
+					<a class="button" th:href="@{/logout}">Cerrar sesión</a>
 				</div>
 			</div>
 		</div>
@@ -70,7 +66,7 @@
 					<td th:text="${evento.aforoMaximo}"></td>
 					<td th:text="${evento.fechaInicio}"></td>
 					<td>
-						<a class="button" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver</a>
+						<a class="button" th:href="@{/eventos/verUno/{id}(id=${evento.idEvento})}">Ver Detalle</a>
 					</td>
 				</tr>
 		</table>
