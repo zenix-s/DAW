@@ -7,8 +7,7 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the eventos database table.
- * 
+ * Clase de persistencia para la tabla "EVENTOS".
  */
 @Entity
 @Table(name="EVENTOS")

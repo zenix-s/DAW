@@ -3,20 +3,19 @@ package zenixs.eventos.model.entity;
 import java.io.Serializable;
 import jakarta.persistence.*;
 
-
 /**
- * The persistent class for the tipos database table.
+ * Clase de persistencia para la tabla "TIPOS".
  * 
  */
 @Entity
-@Table(name="TIPOS")
-@NamedQuery(name="Tipo.findAll", query="SELECT t FROM Tipo t")
+@Table(name = "TIPOS")
+@NamedQuery(name = "Tipo.findAll", query = "SELECT t FROM Tipo t")
 public class Tipo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_TIPO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_TIPO")
 	private int idTipo;
 
 	private String descripcion;
@@ -55,9 +54,4 @@ public class Tipo implements Serializable {
 		return "Tipo [idTipo=" + idTipo + ", descripcion=" + descripcion + ", nombre=" + nombre + "]";
 	}
 
-	
-	
-	
-	
-	 
 }

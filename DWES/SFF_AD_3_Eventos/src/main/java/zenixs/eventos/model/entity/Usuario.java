@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 /**
- * The persistent class for the usuarios database table.
+ * Clase de persistencia para la tabla "USUARIOS".
  * 
  */
 @Entity

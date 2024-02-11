@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the perfiles database table.
+ * Clase de persistencia para la tabla "PERFILES".
  * 
  */
 @Entity

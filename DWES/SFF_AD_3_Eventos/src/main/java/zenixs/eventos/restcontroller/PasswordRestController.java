@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest")
 public class PasswordRestController {
-	
- 	@Autowired
- 	private PasswordEncoder passwordEncoder;
 
-	@GetMapping("/encriptar/{pass}")  
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	/**
+	 * Método que encripta una contraseña con Bcrypt.
+	 * 
+	 * @param password
+	 * @return String
+	 */
+	@GetMapping("/encriptar/{pass}")
 	public String pruebaBcrypt(@PathVariable("pass") String password) {
-	//	String password = "tomasin";
- 		String encriptado = passwordEncoder.encode(password);  
-	//	System.out.println("Password encriptado: " + encriptado);  
-	 	return encriptado;
-		
+		String encriptado = passwordEncoder.encode(password);
+		return encriptado;
 	}
-
-
 }

@@ -88,7 +88,6 @@ public class HomeController {
 		
 	}
 
-	
 	@GetMapping("/index")
 	public String procesarLogin(Authentication aut, Model model, HttpSession misesion) {
 		

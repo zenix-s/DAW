@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the reservas database table.
+ * Clase de persistencia para la tabla "RESERVAS".
  * 
  */
 @Entity

@@ -20,10 +20,11 @@ import zenixs.eventos.model.entity.Reserva;
 import zenixs.eventos.model.entity.Usuario;
 
 import org.springframework.ui.Model;
+
 @Controller
 @RequestMapping("/eventos")
 public class ReservasController {
-	
+
 	@Autowired
 	private EventoDao edao;
 	@Autowired
@@ -46,7 +47,8 @@ public class ReservasController {
 	}
 
 	@PostMapping("/reservar/{idEvento}")
-	public String reservarEvento(@PathVariable("idEvento") int idEvento, Model model, Authentication auth, Integer cantidad, RedirectAttributes ratt) {
+	public String reservarEvento(@PathVariable("idEvento") int idEvento, Model model, Authentication auth,
+			Integer cantidad, RedirectAttributes ratt) {
 		if (cantidad == null || cantidad <= 0 || cantidad > 10) {
 			ratt.addFlashAttribute("errorMessage", "Cantidad invalida");
 			return "redirect:/eventos/misReservas";
@@ -61,15 +63,19 @@ public class ReservasController {
 			cantidadReservadaTotal = 0;
 
 		if (evento.getAforoMaximo() < (cantidadReservadaTotal + cantidad)) {
-			ratt.addFlashAttribute("errorMessage", "No hay suficientes entradas, aforo maximo: " + evento.getAforoMaximo() + " cantidad reservada: " + cantidadReservadaTotal + " cantidad que se puede reservar: " + (evento.getAforoMaximo() - cantidadReservadaTotal));
+			ratt.addFlashAttribute("errorMessage",
+					"No hay suficientes entradas, aforo maximo: " + evento.getAforoMaximo() + " cantidad reservada: "
+							+ cantidadReservadaTotal + " cantidad que se puede reservar: "
+							+ (evento.getAforoMaximo() - cantidadReservadaTotal));
 			return "redirect:/eventos/misReservas";
 		}
 
 		if (cantidadReservada == null)
 			cantidadReservada = 0;
 
-		if ((cantidadReservada + cantidad)> 10) {
-			ratt.addFlashAttribute("errorMessage", "No se puede reservar mas de 10 entradas, cantidad que se puede reservar: " + (10 - cantidadReservada));
+		if ((cantidadReservada + cantidad) > 10) {
+			ratt.addFlashAttribute("errorMessage",
+					"No se puede reservar mas de 10 entradas, cantidad que se puede reservar: " + (10 - cantidadReservada));
 			return "redirect:/eventos/misReservas";
 		}
 
@@ -78,7 +84,7 @@ public class ReservasController {
 		reserva.setCantidad(cantidad);
 		reserva.setPrecioVenta(evento.getPrecio());
 		reserva.setObservaciones("Reserva de evento" + evento.getNombre());
-		
+
 		if (rdao.insertReserva(reserva) == 1) {
 			// System.out.println("Reserva exitosa");
 			ratt.addFlashAttribute("successMessage", "Reserva exitosa");
@@ -91,7 +97,17 @@ public class ReservasController {
 	}
 
 	@GetMapping("/cancelar/{idReserva}")
-	public String cancelarReserva(@PathVariable("idReserva") int idReserva, Model model, RedirectAttributes ratt) {
+	public String cancelarReserva(@PathVariable("idReserva") int idReserva, Model model, RedirectAttributes ratt,
+			Authentication auth) {
+
+			Usuario usuario = udao.findUsuarioById(auth.getName());
+			Reserva reserva = rdao.findReservaById(idReserva);
+
+			if (reserva.getUsuario().getUsername() != usuario.getUsername()) {
+				ratt.addFlashAttribute("errorMessage", "No puedes cancelar esta reserva");
+				return "redirect:/eventos/misReservas";
+			}
+
 		if (rdao.deleteReserva(idReserva) == 1) {
 			ratt.addFlashAttribute("successMessage", "Reserva cancelada");
 			return "redirect:/eventos/misReservas";
