@@ -369,3 +369,210 @@ $conn->close();
 3. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app1` para comprobar que la aplicación esta activa
 
 ## Aplicación 2
+
+### Tecnologias
+
+- Lenguaje de front
+  - HTML5
+  - CSS3
+  - Javascript
+- Lenguaje de back
+  - Java
+- BBDD
+  - MySql
+- Servidor de aplicaciones
+  - Tomcat
+
+### Instalación
+
+#### Servidor Tomcat
+
+1. Instalar el servidor Tomcat con el comando
+
+```bash
+sudo apt install -y tomcat10 tomcat10-admin tomcat10-common tomcat10-user tomcat10-docs tomcat10-examples
+```
+
+2. Comprobar que el servicio esta activo con el comando
+
+```bash
+sudo systemctl status tomcat10
+```
+
+3. Añadir una regla al firewall para permitir el tráfico HTTP con el comando
+
+```bash
+sudo ufw allow 8080/tcp
+
+sudo ufw reload
+```
+
+4. Acceder a la ip de la máquina virtual desde el navegador y añadir `:8080` para comprobar que el servidor esta activo
+
+#### MySql
+
+1. Instalar el gestor de base de datos MySql con el comando
+
+```bash
+sudo apt install -y mariadb-server
+sudo mysql_secure_installation
+```
+
+2. Acceder a MySql con el comando
+
+```bash
+sudo mysql
+```
+
+3. Configurar el usuario para la base de datos
+
+```sql
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
+exit
+```
+
+4. Acceder a MySql con el usuario creado
+
+```bash
+mysql -u username -p
+```
+
+5. Crear una base de datos para la aplicación
+
+```sql
+CREATE DATABASE app2;
+```
+
+6. Crear una tabla para la aplicación
+
+```sql
+USE app2;
+CREATE TABLE tareas (id INT AUTO_INCREMENT PRIMARY KEY, tarea VARCHAR(100), fecha DATE);
+INSERT INTO tareas (tarea, fecha) VALUES ('tarea1', '2022-12-31');
+INSERT INTO tareas (tarea, fecha) VALUES ('tarea2', '2022-12-31');
+INSERT INTO tareas (tarea, fecha) VALUES ('tarea3', '2022-12-31');
+```
+
+#### Configuración ftp para subir archivos a la aplicación
+
+Ya tenemos instalado el servidor ftp, ahora vamos a configurar el acceso a la aplicación.
+
+1. Dar permisos de escritura al directorio `/var/lib/tomcat10/webapps` con el comando
+
+```bash
+sudo chmod 777 /var/lib/tomcat10/webapps
+sudo chown -R usr /var/lib/tomcat10/webapps
+```
+
+2. Asegurarse que en el archivo `/etc/vsftpd.conf` tiene la siguiente configuración
+
+```bash
+local_umask=022
+write_enable=YES
+local_root=/var/lib/tomcat10/webapps
+chroot_local_user=YES
+```
+
+#### Crear aplicación
+
+1. Crear el directorio de la aplicación en el directorio `/var/lib/tomcat10/webapps` con el comando
+
+```bash
+sudo mkdir /var/lib/tomcat10/webapps/app2
+```
+
+##### Opción 1 - Editar archivos desde el servidor
+
+2. Crear el archivo `index.jsp` en el directorio `/var/lib/tomcat10/webapps/app2` con el comando
+
+```bash
+sudo echo "<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum Calculator</title>
+</head>
+<body>
+    <h2>Sum Calculator</h2>
+    <form action="calculate.jsp" method="post">
+        Enter number 1: <input type="text" name="num1"><br>
+        Enter number 2: <input type="text" name="num2"><br>
+        <input type="submit" value="Calculate Sum">
+    </form>
+</body>
+</html>" | sudo tee /var/lib/tomcat10/webapps/app2/index.jsp
+
+sudo echo "<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum Calculator</title>
+</head>
+<body>
+    <h2>Sum Calculator</h2>
+    <form action="calculate.jsp" method="post">
+        Enter number 1: <input type="text" name="num1"><br>
+        Enter number 2: <input type="text" name="num2"><br>
+        <input type="submit" value="Calculate Sum">
+    </form>
+</body>
+</html>
+
+root@debianServer:/var/lib/tomcat10/webapps/app2# cat calculate.jsp
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,javax.servlet.http.*" %>
+
+<%
+    // Get parameters from the form
+    String num1Str = request.getParameter("num1");
+    String num2Str = request.getParameter("num2");
+
+    // Convert parameters to integers
+    int num1 = Integer.parseInt(num1Str);
+    int num2 = Integer.parseInt(num2Str);
+
+    // Calculate the sum
+    int sum = num1 + num2;
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum Result</title>
+</head>
+<body>
+    <h2>Sum Result</h2>
+    <p>Number 1: <%= num1 %></p>
+    <p>Number 2: <%= num2 %></p>
+    <p>Sum: <%= sum %></p>
+</body>
+</html>" | sudo tee /var/lib/tomcat10/webapps/app2/calculate.jsp
+```
+
+3. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app2` para comprobar que la aplicación esta activa
+4. Modificar el archivo `index.jsp` para que se conecte a la base de datos
+5. Reiniciar el servidor Tomcat con el comando
+
+```bash
+
+sudo systemctl restart tomcat10
+```
+
+##### Opción 2 - Subir archivos desde el equipo local usando ftp
+
+1. Conectar por ftp desde el equipo local con filezilla
+
+- Host: ip de la máquina virtual
+- Usuario: usr
+- Contraseña: password
+- Puerto: 21
+
+2. Subir el archivo `index.jsp` y `calculate.jsp`  al directorio `/var/lib/tomcat10/webapps/app2`
+
+3. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app2` para comprobar que la aplicación esta activa
+4. Reiniciar el servidor Tomcat con el comando
+
+```bash
+
+sudo systemctl restart tomcat10
+```
+
