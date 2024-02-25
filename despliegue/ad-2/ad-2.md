@@ -33,12 +33,12 @@ Para la realización de esta práctica se ha utilizado una máquina virtual con 
 En orden de simular un equipo real, se esta usando de Network settings `Bridged Adapter` para que la máquina tenga su propia ip en la red.
 
 - Nombre de la máquina: `debianServer`
-- Usuario: `usr`
+- Usuario: `username`
 - Contraseña: `password`
 
 Durante la instalación del sistema no se han instalado ni entornos gráficos ni programas adicionales.
 
-Se ha creado un usuario llamado `usr`
+Se ha creado un usuario llamado `username`
 
 ## Sistema
 
@@ -61,20 +61,25 @@ apt update && apt upgrade -y
 
 3. Se instalan los programas base con el comando
 
+- sudo para dar permisos de administrador al usuario `username`
+- vim para editar archivos
+- net-tools para comprobar la configuración de red
+- passwd para cambiar la contraseña de los usuarios en caso de ser necesario
+
 ```bash
 apt install -y sudo vim net-tools passwd
 ```
 
-4. Se dan permisos de sudo al usuario `usr` con el comando
+1. Se dan permisos de sudo al usuario `username` con el comando
 
 ```bash
-usermod -aG sudo usr
+usermod -aG sudo username
 ```
 
-5. Iniciar sesión con el usuario `usr` y comprobar que tiene permisos de sudo con el comando
+5. Iniciar sesión con el usuario `username` y comprobar que tiene permisos de sudo con el comando
 
 ```bash
-su - usr
+su - username
 sudo echo "hola"
 ```
 
@@ -120,6 +125,21 @@ sudo ufw reload
 ssh -p 22 user@ip
 ```
 
+Utilizar el comando `sudo ufw status` para comprobar que las reglas se han añadido correctamente.
+Nos debe mostrar algo similar a esto:
+
+```bash
+user@debianServer:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+22/tcp                     ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+22/tcp (v6)                ALLOW       Anywhere (v6)
+```
+
 ### Servicio FTP
 
 1. Instalar el servidor FTP con el comando
@@ -137,13 +157,45 @@ sudo ufw allow 21/tcp
 sudo ufw reload
 ```
 
+Estado de la configuración del firewall
+
+```bash
+Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+22/tcp                     ALLOW       Anywhere
+21/tcp                     ALLOW       Anywhere
+20/tcp                     ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+22/tcp (v6)                ALLOW       Anywhere (v6)
+21/tcp (v6)                ALLOW       Anywhere (v6)
+20/tcp (v6)                ALLOW       Anywhere (v6)
+```
+
 3. Comprobar que el servicio esta activo con el comando
 
 ```bash
 sudo systemctl status vsftpd
 ```
 
+4. Conectar por ftp desde el equipo local con filezilla
+
+![filezilla](./img/ftp1.png)
+
+Poder ver el contenido de la carpeta `/home/username` desde el equipo local
+
+![filezilla](./img/ftp2.png)
+
+### Conclusiones
+
+Hasta este punto se ha configurado el sistema base con un firewall, un servidor SSH y un servidor FTP.
+Esto nos permitirá acceder al sistema de forma remota gracias al servicio SSH y subir archivos al sistema gracias al servicio FTP.
+
 ## Aplicación 1
+
+Para la aplicación 1 se ha decidido montar un servidor Apache encargado de alojar una aplicación web desarrollada con PHP.
 
 ### Tecnologias
 
@@ -182,6 +234,8 @@ sudo ufw reload
 
 4. Acceder a la ip de la máquina virtual desde el navegador para comprobar que el servidor esta activo
 
+![apache](./img/apache1.png)
+
 #### PHP
 
 1. Instalar el lenguaje de programación PHP con el comando
@@ -198,13 +252,15 @@ sudo apt install -y php libapache2-mod-php
 sudo echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php
 ```
 
-- Acceder a la ip de la máquina virtual desde el navegador y añadir `/phpinfo.php` para comprobar que php esta activo
-
-3. Habilitar el módulo de Apache para PHP con el comando
+3. Habilitar el módulo de Apache con el comando
 
 ```bash
 sudo a2enmod php
 ```
+
+- Acceder a la ip de la máquina virtual desde el navegador y añadir `/phpinfo.php` para comprobar que php esta activo
+
+![php](./img/phpinfo.png)
 
 #### MySql
 
@@ -265,6 +321,10 @@ sudo systemctl restart apache2
 sudo apt install -y phpmyadmin
 ```
 
+- Durante la instalación seleccionar `apache2` como servidor
+- Seleccionar `yes` para configurar la base de datos
+- Introducir la contraseña para la base de datos
+
 2. Crear un enlace para poder acceder a phpmyadmin desde el servidor web
 
 ```bash
@@ -284,6 +344,10 @@ sudo phpenmod mysqli
 sudo service apache2 restart
 ```
 
+5. Acceder a la ip de la máquina virtual desde el navegador y añadir `/phpmyadmin` para comprobar que phpmyadmin esta activo
+
+![phpmyadmin](./img/phpmyadmin.png)
+
 #### Configuración ftp para subir archivos a la aplicación
 
 Ya tenemos instalado el servidor ftp, ahora vamos a configurar el acceso a la aplicación.
@@ -291,14 +355,14 @@ Ya tenemos instalado el servidor ftp, ahora vamos a configurar el acceso a la ap
 1. Dar permisos de escritura al directorio `/var/www/html` con el comando
 
 ```bash
-sudo chmod 777 /var/www/html
-sudo chown -R usr /var/www/html
+sudo chmod 775 /var/www/html
+sudo chown -R username /var/www/html
 ```
 
-2. Asegurarse que en el archivo `/etc/vsftpd.conf` tiene la siguiente configuración
+2. Asegurarse que en el archivo `/etc/vsftpd.conf` tiene las siguientes configuraciones
 
 ```bash
-local_umask=022jjjh
+local_umask=022
 write_enable=YES
 local_root=/var/www/html
 chroot_local_user=YES
@@ -355,12 +419,16 @@ $conn->close();
 ?>
 ```
 
+5. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app1` para comprobar que la aplicación esta activa
+
+![app1](./img/app1.png)
+
 ##### Opción 2 - Subir archivos desde el equipo local usando ftp
 
 1. Conectar por ftp desde el equipo local con filezilla
 
 - Host: ip de la máquina virtual
-- Usuario: usr
+- Usuario: username
 - Contraseña: password
 - Puerto: 21
 
@@ -462,7 +530,7 @@ Ya tenemos instalado el servidor ftp, ahora vamos a configurar el acceso a la ap
 
 ```bash
 sudo chmod 777 /var/lib/tomcat10/webapps
-sudo chown -R usr /var/lib/tomcat10/webapps
+sudo chown -R username /var/lib/tomcat10/webapps
 ```
 
 2. Asegurarse que en el archivo `/etc/vsftpd.conf` tiene la siguiente configuración
@@ -562,11 +630,11 @@ sudo systemctl restart tomcat10
 1. Conectar por ftp desde el equipo local con filezilla
 
 - Host: ip de la máquina virtual
-- Usuario: usr
+- Usuario: username
 - Contraseña: password
 - Puerto: 21
 
-2. Subir el archivo `index.jsp` y `calculate.jsp`  al directorio `/var/lib/tomcat10/webapps/app2`
+2. Subir el archivo `index.jsp` y `calculate.jsp` al directorio `/var/lib/tomcat10/webapps/app2`
 
 3. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app2` para comprobar que la aplicación esta activa
 4. Reiniciar el servidor Tomcat con el comando
@@ -575,4 +643,3 @@ sudo systemctl restart tomcat10
 
 sudo systemctl restart tomcat10
 ```
-
