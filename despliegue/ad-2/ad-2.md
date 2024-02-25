@@ -1,30 +1,3 @@
-User
-En esta práctica se presenta al alumno dos aplicaciones con una serie de requisitos. En función
-de estos, el alumno debe determinar que servidor debe montar para que se puedan desplegar
-las distintas aplicaciones.
-
-1. Aplicación desarrollada mediante,
-
-- Lenguaje de front  HTML5, CSS3, Javascript.
-- Lenguaje de back  PHP.
-- Base de datos relacionada  gestor MySQL.
-
-2. Aplicación desarrollada mediante,
-
-- Lenguaje de front  HTML5, CSS3, Javascript.
-- Lenguaje de back  Java.
-- Base de datos relacionada  gestor MySQL.
-  El alumno debe,
-
-1. Definir que servidor debe montar en función de los lenguajes utilizados en el desarrollo
-   de las aplicaciones.
-2. Indicar los pasos que debe dar para poder implementar dicho servidor.
-   El servidor creado, debe tener todas las funcionabilidades, desde poder subir ficheros,
-   hasta poder establecer una conexión para ver que aplicación se ha desplegado.
-3. Crear un servidor real para cada aplicación. Debe obtener distintas imágenes o
-   pantallazos donde se muestre comando utilizado para poder dar dicha funcionabilidad.
-   Para dicha práctica NO se podrá utilizar software como, por ejemplo, XAMPP, WAMP
-
 # Ad-2 Servidores
 
 ## Aclaraciones
@@ -347,8 +320,7 @@ sudo service apache2 restart
 5. Acceder a la ip de la máquina virtual desde el navegador y añadir `/phpmyadmin` para comprobar que phpmyadmin esta activo
 
 ![phpmyadmin](./img/phpmyadmin.png)
-
-#### Configuración ftp para subir archivos a la aplicación
+![phpmyadmin](./img/phpmyadmin2.png)
 
 Ya tenemos instalado el servidor ftp, ahora vamos a configurar el acceso a la aplicación.
 
@@ -367,6 +339,12 @@ write_enable=YES
 local_root=/var/www/html
 chroot_local_user=YES
 ```
+
+- En filezilla si no se puede establecer la conexión, en ajustes -> ftp -> modo de transferencia -> activo
+
+3. Conectar por ftp desde el equipo local con filezilla
+
+![filezilla](./img/filezilla.png)
 
 #### Crear aplicación
 
@@ -457,6 +435,13 @@ $conn->close();
 
 1. Instalar el servidor Tomcat con el comando
 
+- `tomcat10` es la versión de Tomcat que se instala
+- `tomcat10-admin` es la interfaz web para administrar Tomcat
+- `tomcat10-common` es la documentación y los archivos comunes
+- `tomcat10-user` es el usuario que ejecuta Tomcat
+- `tomcat10-docs` es la documentación
+- `tomcat10-examples` son ejemplos de aplicaciones
+
 ```bash
 sudo apt install -y tomcat10 tomcat10-admin tomcat10-common tomcat10-user tomcat10-docs tomcat10-examples
 ```
@@ -467,7 +452,7 @@ sudo apt install -y tomcat10 tomcat10-admin tomcat10-common tomcat10-user tomcat
 sudo systemctl status tomcat10
 ```
 
-3. Añadir una regla al firewall para permitir el tráfico HTTP con el comando
+3. Añadir una regla al firewall para permitir el tráfico HTTP con el comando. El puerto por defecto de Tomcat es el 8080
 
 ```bash
 sudo ufw allow 8080/tcp
@@ -476,6 +461,8 @@ sudo ufw reload
 ```
 
 4. Acceder a la ip de la máquina virtual desde el navegador y añadir `:8080` para comprobar que el servidor esta activo
+
+![tomcat](./img/tomcat1.png)
 
 #### MySql
 
@@ -542,6 +529,41 @@ local_root=/var/lib/tomcat10/webapps
 chroot_local_user=YES
 ```
 
+3. Reiniciar el servidor ftp con el comando
+
+```bash
+sudo systemctl restart vsftpd
+```
+
+4. Conectar por ftp desde el equipo local con filezilla
+
+![filezilla](./img/ftptomcat.png)
+
+#### Crear un usuario para la interfaz de administración de Tomcat
+
+1. Añadir un usuario al archivo `/etc/tomcat10/tomcat-users.xml` con el comando
+
+```bash
+sudo vim /etc/tomcat10/tomcat-users.xml
+```
+
+Descomentar la sección que contiene el usuario y la contraseña
+
+```xml
+<user username="admin" password="<must-be-changed>" roles="manager-gui"/>
+<user username="robot" password="<must-be-changed>" roles="manager-script"/>
+```
+
+2. Reiniciar el servidor Tomcat con el comando
+
+```bash
+sudo systemctl restart tomcat10
+```
+
+3. Acceder a la ip de la máquina virtual desde el navegador y añadir `:8080/manager/html` para comprobar que la interfaz de administración de Tomcat esta activa
+
+![tomcat](./img/tomcat2.png)
+
 #### Crear aplicación
 
 1. Crear el directorio de la aplicación en el directorio `/var/lib/tomcat10/webapps` con el comando
@@ -552,78 +574,68 @@ sudo mkdir /var/lib/tomcat10/webapps/app2
 
 ##### Opción 1 - Editar archivos desde el servidor
 
-2. Crear el archivo `index.jsp` en el directorio `/var/lib/tomcat10/webapps/app2` con el comando
+2. Crear el archivo `index.jsp` en el directorio `/var/lib/tomcat10/webapps/app2` y añadir el código
 
-```bash
-sudo echo "<!DOCTYPE html>
+```jsp
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Sum Calculator</title>
+    <title>Sumar dos Números</title>
 </head>
 <body>
-    <h2>Sum Calculator</h2>
+    <h2>Sumar Números</h2>
     <form action="calculate.jsp" method="post">
-        Enter number 1: <input type="text" name="num1"><br>
-        Enter number 2: <input type="text" name="num2"><br>
-        <input type="submit" value="Calculate Sum">
-    </form>
-</body>
-</html>" | sudo tee /var/lib/tomcat10/webapps/app2/index.jsp
-
-sudo echo "<!DOCTYPE html>
-<html>
-<head>
-    <title>Sum Calculator</title>
-</head>
-<body>
-    <h2>Sum Calculator</h2>
-    <form action="calculate.jsp" method="post">
-        Enter number 1: <input type="text" name="num1"><br>
-        Enter number 2: <input type="text" name="num2"><br>
-        <input type="submit" value="Calculate Sum">
+        Número 1: <input type="text" name="num1"><br>
+        Número 2: <input type="text" name="num2"><br>
+        <input type="submit" value="Calcular Suma">
     </form>
 </body>
 </html>
 
-root@debianServer:/var/lib/tomcat10/webapps/app2# cat calculate.jsp
+```
+
+3. Crear el archivo `calculate.jsp` en el directorio `/var/lib/tomcat10/webapps/app2` y añadir el código
+
+```jsp
+
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="javax.servlet.*,javax.servlet.http.*" %>
 
 <%
-    // Get parameters from the form
+		// Se obtienen los parametros del formulario
     String num1Str = request.getParameter("num1");
     String num2Str = request.getParameter("num2");
 
-    // Convert parameters to integers
+		// Se convierten los parametros a enteros
     int num1 = Integer.parseInt(num1Str);
     int num2 = Integer.parseInt(num2Str);
 
-    // Calculate the sum
+		// Se realiza la suma
     int sum = num1 + num2;
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sum Result</title>
+    <title>Sumar dos Numeros</title>
 </head>
 <body>
-    <h2>Sum Result</h2>
-    <p>Number 1: <%= num1 %></p>
-    <p>Number 2: <%= num2 %></p>
-    <p>Sum: <%= sum %></p>
+    <h2>Sumar dos Numeros</h2>
+    <p>Numero 1: <%= num1 %></p>
+    <p>Numero 2: <%= num2 %></p>
+    <p>Suma: <%= sum %></p>
 </body>
-</html>" | sudo tee /var/lib/tomcat10/webapps/app2/calculate.jsp
+</html>
 ```
 
-3. Acceder a la ip de la máquina virtual desde el navegador y añadir `/app2` para comprobar que la aplicación esta activa
-4. Modificar el archivo `index.jsp` para que se conecte a la base de datos
-5. Reiniciar el servidor Tomcat con el comando
+4. Acceder a la ip de la máquina virtual desde el navegador y ir al panel de administración de Tomcat para comprobar que la aplicación esta activa
 
-```bash
+![tomcat](./img/tomcat3.png)
 
-sudo systemctl restart tomcat10
-```
+5. Acceder a la ip de la máquina virtual desde el navegador y añadir `:8080/app2` para ver la aplicación
+
+![app2](./img/app2.1.png)
+![app2](./img/app2.2.png)
 
 ##### Opción 2 - Subir archivos desde el equipo local usando ftp
 
@@ -643,3 +655,34 @@ sudo systemctl restart tomcat10
 
 sudo systemctl restart tomcat10
 ```
+
+## Conclusiones
+
+De forma base se ha configurado un servidor Debian 12 con un firewall, un servidor SSH y un servidor FTP.
+
+Sobre este sistema se han montado dos aplicaciones web.
+
+La primera aplicación se ha montado sobre un servidor Apache con PHP y MySql.
+
+- Se ha configurado el servidor Apache y se ha comprobado que esta activo
+- Se ha configurado PHP y se ha comprobado que esta activo
+- Se ha configurado MySql y se ha comprobado que esta activo
+- Se ha instalado PhpMyAdmin y se ha comprobado que esta activo
+- Se ha configurado el servidor FTP y se ha configurado para dar acceso al directorio de la aplicación
+- Se ha creado una aplicación web y se ha comprobado que esta activa
+- Se ha comprobado que se puede subir archivos a la aplicación
+- Se ha comprobado que se puede acceder a la base de datos desde la aplicación
+- Se ha comprobado que se puede acceder a la base de datos desde PhpMyAdmin
+- Se ha comprobado que se puede acceder a la aplicación desde el equipo local
+
+La segunda aplicación se ha montado sobre un servidor Tomcat con MySql.
+
+- Se ha configurado el servidor Tomcat y se ha comprobado que esta activo
+- Se ha configurado MySql y se ha comprobado que esta activo
+- Se ha configurado el servidor FTP y se ha configurado para dar acceso al directorio de la aplicación
+- Se ha creado una aplicación web y se ha comprobado que esta activa
+- Se ha comprobado que se puede subir archivos a la aplicación
+- Se ha comprobado que se puede acceder a la aplicación desde el panel de administración de Tomcat
+- Se ha comprobado que se puede acceder a la aplicación desde el equipo local
+
+
