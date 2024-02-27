@@ -2,7 +2,6 @@ package zenixs.ad4.service;
 
 import java.util.List;
 import zenixs.ad4.model.entity.Comercial;
-import zenixs.ad4.model.entity.Pedido;
 
 public interface ComercialService {
 
@@ -16,6 +15,5 @@ public interface ComercialService {
 
 	List<Comercial> getComercialesConPedidos();
 
-	List<Pedido> getPedidosComercial(int idComercial);
 
 }

@@ -72,9 +72,4 @@ public class ComercialRestController {
 		return comercialService.getComercialesConPedidos();
 	}
 
-
-	@GetMapping("/pedidos/{idComercial}")
-	public List<Pedido> getPedidosComercial(@PathVariable int idComercial) {
-		return comercialService.getPedidosComercial(idComercial);
-	}
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import zenixs.ad4.model.entity.Comercial;
-import zenixs.ad4.model.entity.Pedido;
 import zenixs.ad4.repository.ComercialRepository;
 
 @Service
@@ -53,9 +52,5 @@ public class ImplementComercialService implements ComercialService {
 		return comercialRepository.getComercialesConPedidos();
 	}
 
-	@Override
-	public List<Pedido> getPedidosComercial(int idComercial) {
-		return comercialRepository.getPedidosComercial(idComercial);
-	}
 
 }

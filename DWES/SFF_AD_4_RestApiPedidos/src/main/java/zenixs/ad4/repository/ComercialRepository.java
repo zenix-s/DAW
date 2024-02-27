@@ -27,11 +27,4 @@ public interface ComercialRepository extends JpaRepository<Comercial, Integer> {
 	@Query("SELECT c FROM Comercial c WHERE (SELECT COUNT(p) FROM Pedido p WHERE p.comercial.id = c.id) > 0")
 	public List<Comercial> getComercialesConPedidos();
 
-	/**
-	 * Devuelve los pedidos de un comercial 
-	 * @param idComercial id del comercial
-	 * @return List<Pedido> lista de pedidos
-	 */
-	@Query("SELECT p FROM Pedido p WHERE p.comercial.id = ?1")
-	public List<Pedido> getPedidosComercial(int idComercial);
 }
