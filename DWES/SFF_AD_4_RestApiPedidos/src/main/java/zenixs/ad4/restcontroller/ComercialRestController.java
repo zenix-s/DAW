@@ -67,6 +67,11 @@ public class ComercialRestController {
 		return comercialService.getComercialesPorCliente(idCliente); 
 	}
 
+	/**
+	 * Maneja la petición GET /comercial/conpedidos
+	 * Devuelve los comerciales que han realizado pedidos
+	 * @return List<Comercial> lista de comerciales que han realizado pedidos
+	 */
 	@GetMapping("/conpedidos")
 	public List<Comercial> getComercialesConPedidos() {
 		return comercialService.getComercialesConPedidos();
