@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import zenixs.ad4.model.entity.Comercial;
-import zenixs.ad4.model.entity.Pedido;
 import zenixs.ad4.service.ComercialService;
 
 @RestController
